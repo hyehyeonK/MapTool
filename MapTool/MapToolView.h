@@ -6,10 +6,10 @@
 
 #include "GraphicDev.h"
 #include "TextureMgr.h"
-
+#include "Background.h"
 class CMapToolDoc;
 
-class CMapToolView : public CView
+class CMapToolView : public CScrollView
 {
 protected: // serialization에서만 만들어집니다.
 	CMapToolView();
@@ -31,9 +31,10 @@ protected:
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-public:
+private:
 	CGraphicDev*		m_pGraphicDev = nullptr;
 	CTextureMgr*		m_pTextureMgr = nullptr;
+	CBackground*	m_pBackground = nullptr;
 
 // 구현입니다.
 public:

@@ -44,6 +44,12 @@
     <Filter Include="01. Util\3. FileInfo">
       <UniqueIdentifier>{18f67d2e-feaa-4528-a208-eed82c855dff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. View\1. ControlForm">
+      <UniqueIdentifier>{82d3f64d-9fe1-4e6f-a014-9c7d403e1265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Obj\0.Background">
+      <UniqueIdentifier>{d6952ba2-5273-447b-b181-88972f443b37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -88,6 +94,12 @@
     <ClInclude Include="TileMgr.h">
       <Filter>01. Util\2. TileMgr</Filter>
     </ClInclude>
+    <ClInclude Include="ControlForm.h">
+      <Filter>01. View\1. ControlForm</Filter>
+    </ClInclude>
+    <ClInclude Include="Background.h">
+      <Filter>02. Obj\0.Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -125,6 +137,12 @@
     </ClCompile>
     <ClCompile Include="TileMgr.cpp">
       <Filter>01. Util\2. TileMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlForm.cpp">
+      <Filter>01. View\1. ControlForm</Filter>
+    </ClCompile>
+    <ClCompile Include="Background.cpp">
+      <Filter>02. Obj\0.Background</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
