@@ -4,9 +4,6 @@
 
 #pragma once
 
-#include "GraphicDev.h"
-#include "TextureMgr.h"
-
 class CMapToolDoc;
 
 class CMapToolView : public CView

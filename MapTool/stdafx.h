@@ -76,3 +76,6 @@
 
 
 using namespace std;
+
+#include "GraphicDev.h"
+#include "TextureMgr.h"
