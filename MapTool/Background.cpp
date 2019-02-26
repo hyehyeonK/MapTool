@@ -7,6 +7,7 @@ CBackground::CBackground()
 	:m_pGraphicDev(g_MGR_GRAPHIC),
 	m_vecTile(g_MGR_TILE->GetTiles())
 {
+	//Test
 }
 
 
