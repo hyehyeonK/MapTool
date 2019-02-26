@@ -1,5 +1,5 @@
 #pragma once
-
+#include "DebugDialog.h"
 
 
 // CControlForm 폼 뷰입니다.
@@ -27,6 +27,11 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnClickShowDebug();
+
+public:
+	CDebugDialog m_DebugDialog;
 };
 
 

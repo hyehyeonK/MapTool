@@ -50,6 +50,9 @@
     <Filter Include="02. Obj\0.Background">
       <UniqueIdentifier>{d6952ba2-5273-447b-b181-88972f443b37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Dialog">
+      <UniqueIdentifier>{b540dc33-8bb3-43b1-a34e-0fbbb15ef1a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -100,6 +103,9 @@
     <ClInclude Include="Background.h">
       <Filter>02. Obj\0.Background</Filter>
     </ClInclude>
+    <ClInclude Include="DebugDialog.h">
+      <Filter>04. Dialog</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -143,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>02. Obj\0.Background</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugDialog.cpp">
+      <Filter>04. Dialog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
