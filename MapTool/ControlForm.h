@@ -1,5 +1,6 @@
 #pragma once
 #include "DebugDialog.h"
+#include "afxwin.h"
 
 
 // CControlForm 폼 뷰입니다.
@@ -27,11 +28,26 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnClickShowDebug();
 
 public:
+	bool m_bStart = true;
+	int m_iColum;
+	int m_iRow;
+	int m_iTileW;
+	int m_iTileH;
+
+public:
+	CButton m_pRadioView[2];
 	CDebugDialog m_DebugDialog;
+
+public:
+
+
+	
+public:
+	afx_msg void OnClickShowDebug();
+	afx_msg void OnClickApplySetting();
+
 };
 
 

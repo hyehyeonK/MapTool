@@ -53,6 +53,9 @@
     <Filter Include="04. Dialog">
       <UniqueIdentifier>{b540dc33-8bb3-43b1-a34e-0fbbb15ef1a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Util\4. DataMgr">
+      <UniqueIdentifier>{d649b356-8370-49a2-bc78-84ace5298f5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -106,6 +109,7 @@
     <ClInclude Include="DebugDialog.h">
       <Filter>04. Dialog</Filter>
     </ClInclude>
+    <ClInclude Include="ValueMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -153,6 +157,7 @@
     <ClCompile Include="DebugDialog.cpp">
       <Filter>04. Dialog</Filter>
     </ClCompile>
+    <ClCompile Include="ValueMgr.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapTool.rc">
