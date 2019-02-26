@@ -191,6 +191,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="ControlForm.h" />
     <ClInclude Include="GraphicDev.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MapTool.h" />
@@ -207,6 +209,8 @@
     <ClInclude Include="TileMgr.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="ControlForm.cpp" />
     <ClCompile Include="GraphicDev.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MapTool.cpp" />
@@ -239,4 +243,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="MapTool.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

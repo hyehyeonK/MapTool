@@ -4,6 +4,7 @@
 
 #pragma once
 #include "MapToolView.h"
+#include "ControlForm.h"
 
 class CMainFrame : public CFrameWnd
 {
@@ -34,6 +35,15 @@ protected:  // 컨트롤 모음이 포함된 멤버입니다.
 	CToolBar          m_wndToolBar;
 	CStatusBar        m_wndStatusBar;
 
+private:
+	CSplitterWnd		m_MainSplitter;
+	CSplitterWnd		m_SecondSplitter;
+
+public:
+	CMapToolView*	m_pMainView = nullptr;
+	CControlForm*	m_pCtrlView = nullptr;
+
+public:
 // 생성된 메시지 맵 함수
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -41,8 +51,6 @@ protected:
 
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
 
-public:
-	CMapToolView* m_pMainView;
 };
 
 

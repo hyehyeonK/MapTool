@@ -11,6 +11,7 @@
 
 #include "MapToolDoc.h"
 #include "MapToolView.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,9 +21,9 @@ HWND g_hWnd;
 
 // CMapToolView
 
-IMPLEMENT_DYNCREATE(CMapToolView, CView)
+IMPLEMENT_DYNCREATE(CMapToolView, CScrollView)
 
-BEGIN_MESSAGE_MAP(CMapToolView, CView)
+BEGIN_MESSAGE_MAP(CMapToolView, CScrollView)
 	// 표준 인쇄 명령입니다.
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
@@ -62,6 +63,14 @@ void CMapToolView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+
+
+	m_pGraphicDev->Render_Begin();
+
+	m_pBackground->Render();
+
+	m_pGraphicDev->Render_End();
+
 }
 
 
@@ -111,8 +120,52 @@ CMapToolDoc* CMapToolView::GetDocument() const // 디버그되지 않은 버전은 인라인�
 void CMapToolView::OnInitialUpdate()
 {
 	g_hWnd = m_hWnd;
-	CView::OnInitialUpdate();
 
+	SetScrollSizes(MM_TEXT, CSize((TILECX * TILEX), TILECY * TILEY));
+
+	CMainFrame*		pMainFrm = ((CMainFrame*)AfxGetMainWnd());
+
+	RECT		rcWindow;
+	pMainFrm->GetWindowRect(&rcWindow);	 // 윈도우 창 프레임의 사이즈를 얻어오는 함수
+
+	SetRect(&rcWindow,	// 프레임 크기의 가로와 세로 사이즈를 새로운 렉트에 right, bottom에 저장
+		0,
+		0,
+		rcWindow.right - rcWindow.left,
+		rcWindow.bottom - rcWindow.top);
+
+
+	RECT	rcMainView;
+	GetClientRect(&rcMainView);	// 순수한 뷰 창의 크기를 얻어오는 함수
+
+	float	fRowFrm = float(rcWindow.right - rcMainView.right);
+	float	fColFrm = float(rcWindow.bottom - rcMainView.bottom);
+
+	// 뷰 창의 좌표들을 0,0 기준으로 출력할 수 있게 창의 위치를 재조정하는 함수
+	pMainFrm->SetWindowPos(NULL,
+		0,
+		0,
+		int(WINCX + fRowFrm),
+		int(WINCY + fColFrm),
+		SWP_NOZORDER);
+
+	if (FAILED(m_pGraphicDev->Initialize()))
+	{
+		AfxMessageBox(L"디바이스 초기화 실패");
+		return;
+	}
+
+	if (FAILED(m_pTextureMgr->InsertTexture(L"../Texture/Tile/Tile%d.png", L"TILE", TEX_MULTI, L"Tile", TILE_COUNT)))
+	{
+		AfxMessageBox(L"타일 텍스쳐 생성 실패");
+		return;
+	}
+
+	m_pBackground = new CBackground;
+	m_pBackground->Initialize();
+	m_pBackground->SetMainView(this);
+
+	CView::OnInitialUpdate();
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 }
 
@@ -121,6 +174,7 @@ void CMapToolView::OnDestroy()
 {
 	CView::OnDestroy();
 
+	Safe_Delete(m_pBackground);
 	m_pTextureMgr->DestroyInstance();
 	m_pGraphicDev->DestroyInstance();
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
