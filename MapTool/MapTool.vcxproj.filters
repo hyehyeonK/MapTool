@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="999. Default">
+      <UniqueIdentifier>{6acc9017-260e-469e-9daf-f7075be06649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="999. Default\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="00. MainFrm">
+      <UniqueIdentifier>{fb0a2899-2159-4b76-ba2e-65943f31051f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. View">
+      <UniqueIdentifier>{28df879c-65ec-4e50-a9b9-b47979bf7fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. View\0.MainView">
+      <UniqueIdentifier>{24f84582-be3a-443b-ba0e-a9dfb6537870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util">
+      <UniqueIdentifier>{5b141ff3-c61c-444d-85dc-81e9c3a78012}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util\0. GraphicDev">
+      <UniqueIdentifier>{221ab2a1-ef22-45c8-8703-6513996e2caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util\1. TexturrMgr">
+      <UniqueIdentifier>{3919f9bb-3d16-493b-9e96-62944d754c58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Texture">
+      <UniqueIdentifier>{9ea58706-2535-4847-bbfa-7755746e1f6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Obj">
+      <UniqueIdentifier>{8246e1f1-042d-4c8c-aa04-608d3f3a1fd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Texture\0. SingleTexture">
+      <UniqueIdentifier>{4f37e9b6-9bd0-40b4-ba71-817f5b123ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Texture\1. MultiTexture">
+      <UniqueIdentifier>{230add6c-ee6a-45d1-b1f6-cb94d68abdd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util\2. TileMgr">
+      <UniqueIdentifier>{e4dd05cf-76cf-4d73-b9a2-3c7c8804cddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util\3. FileInfo">
+      <UniqueIdentifier>{18f67d2e-feaa-4528-a208-eed82c855dff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MapToolDoc.h">
+      <Filter>999. Default\리소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>00. MainFrm</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTool.h">
+      <Filter>999. Default</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>999. Default</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>999. Default</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>999. Default</Filter>
+    </ClInclude>
+    <ClInclude Include="MapToolView.h">
+      <Filter>01. View\0.MainView</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicDev.h">
+      <Filter>01. Util\0. GraphicDev</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>01. Util\1. TexturrMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>02. Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>02. Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiTexture.h">
+      <Filter>02. Texture\1. MultiTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTexture.h">
+      <Filter>02. Texture\0. SingleTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMgr.h">
+      <Filter>01. Util\2. TileMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MapTool.cpp">
+      <Filter>999. Default</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolDoc.cpp">
+      <Filter>999. Default</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>999. Default</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>00. MainFrm</Filter>
+    </ClCompile>
+    <ClCompile Include="MapToolView.cpp">
+      <Filter>01. View\0.MainView</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicDev.cpp">
+      <Filter>01. Util\0. GraphicDev</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>01. Util\1. TexturrMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>02. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>02. Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTexture.cpp">
+      <Filter>02. Texture\0. SingleTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTexture.cpp">
+      <Filter>02. Texture\1. MultiTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMgr.cpp">
+      <Filter>01. Util\2. TileMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MapTool.rc">
+      <Filter>999. Default\리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\MapTool.rc2">
+      <Filter>999. Default\리소스 파일</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\MapToolDoc.ico">
+      <Filter>999. Default\리소스 파일</Filter>
+    </Image>
+    <Image Include="res\MapTool.ico">
+      <Filter>999. Default\리소스 파일</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>999. Default\리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>999. Default</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
