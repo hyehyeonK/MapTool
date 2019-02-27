@@ -31,6 +31,15 @@ protected:
 public:
 	CListBox m_ListBox;
 	CStatic m_Picture;
+
+public:
+	float m_ScaleX;
+	float m_ScaleY;
+
+public:
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnTileList();
+	afx_msg void OnScaleX();
+	afx_msg void OnScaleY();
+	virtual BOOL OnInitDialog();
 };

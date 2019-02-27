@@ -19,9 +19,13 @@ private:
 	~CObjMgr();
 
 public:
-	//vector<INFO*> m_vecObj&	GetObjects() { return m_vecObj; }
-	//void InitTiles();
-	//void Release();
+	vector<INFO*>& GetObjects() { return *m_vecObj; }
+
+public:
+	void Initialize(void);
+	void Progress(void);
+	void Render(void);
+	void Release(void);
 
 private:
 	vector<INFO*> m_vecObj[OBJ_END];

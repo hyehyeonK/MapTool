@@ -13,6 +13,8 @@ IMPLEMENT_DYNAMIC(CTabTile, CDialog)
 
 CTabTile::CTabTile(CWnd* pParent /*=NULL*/)
 	: CDialog(IDD_TAB_TILE, pParent)
+	, m_ScaleX(1.f)
+	, m_ScaleY(1.f)
 {
 
 }
@@ -49,12 +51,18 @@ void CTabTile::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_ListBox);
 	DDX_Control(pDX, IDC_PICTURE, m_Picture);
+	DDX_Text(pDX, IDC_EDIT1, m_ScaleX);
+	//DDV_MinMaxFloat(pDX, m_ScaleX, 0.1, 3.0);
+	DDX_Text(pDX, IDC_EDIT2, m_ScaleY);
+	//DDV_MinMaxFloat(pDX, m_ScaleY, 0.1, 3.0);
 }
 
 
 BEGIN_MESSAGE_MAP(CTabTile, CDialog)
 	ON_WM_DROPFILES()
 	ON_LBN_SELCHANGE(IDC_LIST1, &CTabTile::OnTileList)
+	ON_EN_CHANGE(IDC_EDIT1, &CTabTile::OnScaleX)
+	ON_EN_CHANGE(IDC_EDIT2, &CTabTile::OnScaleY)
 END_MESSAGE_MAP()
 
 
@@ -135,4 +143,50 @@ void CTabTile::OnTileList()
 	g_MGR_VALUE->GetBackGround()->m_byDrawID = ((BYTE)iTileNumber);
 
 	UpdateData(FALSE);
+}
+
+
+void CTabTile::OnScaleX()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	UpdateData(TRUE);
+	g_MGR_VALUE->m_TileScale.x = m_ScaleX;
+	UpdateData(FALSE);
+}
+
+
+void CTabTile::OnScaleY()
+{
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정 
+	//하고 마스크에 OR 연산하여 설정된 ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출하지 않으면
+	// 이 알림 메시지를 보내지 않습니다.
+
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	UpdateData(TRUE);
+	g_MGR_VALUE->m_TileScale.y = m_ScaleY;
+	UpdateData(FALSE);
+}
+
+
+BOOL CTabTile::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
+
+	UpdateData(TRUE);
+	m_ScaleX = 1.f;
+	m_ScaleY = 1.f;
+	UpdateData(FALSE);
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
