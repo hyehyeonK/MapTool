@@ -211,8 +211,10 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Debug View"
 FONT 9, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "확인",IDOK,209,179,50,14
-    PUSHBUTTON      "취소",IDCANCEL,263,179,50,14
+    DEFPUSHBUTTON   "확인",IDOK,264,179,50,14
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,7,147,134
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,143,147,50
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,157,7,156,170
 END
 
 
@@ -236,7 +238,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041204B0"
+        BLOCK "041204b0"
         BEGIN
             VALUE "CompanyName", "TODO: <회사 이름>"
             VALUE "FileDescription", "MapTool"

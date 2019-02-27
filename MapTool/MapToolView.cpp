@@ -39,7 +39,6 @@ CMapToolView::CMapToolView()
 	m_pTextureMgr(g_MGR_TEXTURE)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
-	ZeroMemory(m_pBackground, sizeof(CBackground*) * 2);
 }
 
 CMapToolView::~CMapToolView()
@@ -68,7 +67,7 @@ void CMapToolView::OnDraw(CDC* /*pDC*/)
 	
 	m_pGraphicDev->Render_Begin();
 
-	m_pBackground[g_MGR_VALUE->eViewPoint]->Render();
+	g_MGR_VALUE->GetBackGround()->Render();
 
 	m_pGraphicDev->Render_End();
 
@@ -162,11 +161,6 @@ void CMapToolView::OnInitialUpdate()
 		return;
 	}
 
-	m_pBackground[0] = new CTopViewBack;
-	m_pBackground[1] = new CQuarterViewBack;
-	m_pBackground[0]->Initialize();
-	m_pBackground[1]->Initialize();
-
 	SetTimer(1, 100, NULL);
 
 	CView::OnInitialUpdate();
@@ -178,8 +172,6 @@ void CMapToolView::OnDestroy()
 {
 	CView::OnDestroy();
 
-	Safe_Delete(m_pBackground[0]);
-	Safe_Delete(m_pBackground[1]);
 	m_pTextureMgr->DestroyInstance();
 	m_pGraphicDev->DestroyInstance();
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
@@ -190,7 +182,8 @@ void CMapToolView::OnTimer(UINT_PTR nIDEvent)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
-	Invalidate(FALSE);
+	g_MGR_VALUE->Progress();
+	//Invalidate(FALSE);
 
 	CScrollView::OnTimer(nIDEvent);
 }

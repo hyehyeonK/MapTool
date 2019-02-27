@@ -197,7 +197,6 @@
     <ClInclude Include="TopViewBack.h" />
     <ClInclude Include="ValueMgr.h" />
     <ClInclude Include="DebugDialog.h" />
-    <ClInclude Include="GlobalMgr.h" />
     <ClInclude Include="GraphicDev.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MapTool.h" />
@@ -220,7 +219,6 @@
     <ClCompile Include="TopViewBack.cpp" />
     <ClCompile Include="ValueMgr.cpp" />
     <ClCompile Include="DebugDialog.cpp" />
-    <ClCompile Include="GlobalMgr.cpp" />
     <ClCompile Include="GraphicDev.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MapTool.cpp" />

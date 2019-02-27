@@ -24,6 +24,7 @@ CDebugDialog::~CDebugDialog()
 void CDebugDialog::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	
 }
 
 

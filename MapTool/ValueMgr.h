@@ -1,6 +1,8 @@
 #pragma once
 #include "MapToolView.h"
 #include "ControlForm.h"
+#include "QuarterViewBack.h"
+#include "TopViewBack.h"
 
 #define g_MGR_VALUE CValueMgr::GetInstance()
 
@@ -20,6 +22,8 @@ public:	//View
 	CMapToolView*	pMainView = nullptr;
 	CControlForm*	pCtrlView = nullptr;
 
+	CBackground* m_pBackground[2];
+
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;
 	int					iColum = 0;
@@ -27,5 +31,10 @@ public:	//Value
 	int					iTileW = TILECX;
 	int					iTileH = TILECY;
 
+public:
+	void Initialize();
+	void Progress();
+	void Release();
+	CBackground* GetBackGround();
 };
 

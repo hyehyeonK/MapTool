@@ -37,9 +37,6 @@ private:
 	CGraphicDev*		m_pGraphicDev = nullptr;
 	CTextureMgr*		m_pTextureMgr = nullptr;
 
-public:
-	CBackground*	m_pBackground[2];
-
 // 구현입니다.
 public:
 	virtual ~CMapToolView();
