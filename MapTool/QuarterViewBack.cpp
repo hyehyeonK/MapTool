@@ -131,9 +131,6 @@ void CQuarterViewBack::Render()
 	}
 }
 
-void CQuarterViewBack::Release()
-{
-}
 
 void CQuarterViewBack::LineRender()
 {
@@ -270,7 +267,6 @@ POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 	//return{ m_iTargetIdxY,m_iTargetIdxX };
 	return{ m_iTargetIdxX, m_iTargetIdxY };
 }
-
 void CQuarterViewBack::Release()
 {
 }
