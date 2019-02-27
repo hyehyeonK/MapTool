@@ -228,6 +228,7 @@ void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 			g_MGR_VALUE->GetBackGround()->TIleChange();
 		break;
 	case CValueMgr::TOOL_OBJ:
+		g_MGR_VALUE->GetBackGround()->AddObject();
 		break;
 	case CValueMgr::TOOL_COLLI:
 		break;
