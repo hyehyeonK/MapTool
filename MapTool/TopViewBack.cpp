@@ -122,16 +122,16 @@ void CTopViewBack::Render()
 		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
 			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };*/
 
-		vList[0] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[1] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[2] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[3] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[0] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
 		m_pGraphicDev->GetLine()->End();
@@ -176,7 +176,7 @@ void CTopViewBack::LineRender()
 				m_pGraphicDev->GetSprite()->Draw(
 					pTexTexture->pTexture,
 					NULL, // 보여줄 이미지 크기
-					&D3DXVECTOR3(TILEIMG_SIZE >> 1, TILEIMG_SIZE >> 1, 0.f), // 출력할 이미지의 센터 지점	
+					&D3DXVECTOR3(pTexTexture->tImgInfo.Width >> 1, pTexTexture->tImgInfo.Height >> 1, 0.f), // 출력할 이미지의 센터 지점	
 					NULL,  // 출력할 이미지 포지션(출력 위치)
 					D3DCOLOR_ARGB(255, 255, 255, 255));;
 			}
@@ -247,16 +247,16 @@ void CTopViewBack::LineRender()
 		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
 		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };*/
 
-		vList[0] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[1] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[2] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[3] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[0] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
 		m_pGraphicDev->GetLine()->End();
@@ -279,5 +279,5 @@ POINT CTopViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 	if (iColum  < 0 || iColum >= g_MGR_VALUE->iColum || iRow >= g_MGR_VALUE->iRow || iRow < 0)
 		return{ -1,-1 };
 
-	return{ iColum, iRow };
+	return{ iRow, iColum };
 }
