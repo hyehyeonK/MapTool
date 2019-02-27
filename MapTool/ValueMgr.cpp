@@ -25,6 +25,7 @@ void CValueMgr::Initialize()
 	m_Scale = D3DXVECTOR3(1.f, 1.f, 0.f);
 
 	m_Mouse = CPoint(0, 0);
+	m_bLineDraw = true;
 }
 
 void CValueMgr::Progress()
@@ -39,6 +40,18 @@ void CValueMgr::Release()
 	m_WorldMat = m_ScaleMat;
 	Safe_Delete(m_pBackground[QUARTER]);
 	Safe_Delete(m_pBackground[TOPVIEW]);
+}
+
+void CValueMgr::BackGroundRender()
+{
+	if (m_bLineDraw)
+	{
+		m_pBackground[eViewPoint]->LineRender();
+	}
+	else
+	{
+		m_pBackground[eViewPoint]->Render();
+	}
 }
 
 CBackground* CValueMgr::GetBackGround()

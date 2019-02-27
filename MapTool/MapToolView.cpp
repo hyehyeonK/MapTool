@@ -68,7 +68,7 @@ void CMapToolView::OnDraw(CDC* /*pDC*/)
 	
 	m_pGraphicDev->Render_Begin();
 
-	g_MGR_VALUE->GetBackGround()->Render();
+	g_MGR_VALUE->BackGroundRender();
 
 	m_pGraphicDev->Render_End();
 

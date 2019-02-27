@@ -67,6 +67,11 @@ void CTopViewBack::Render()
 	{
 		for (int j = 0; j < m_pValueMgr->iRow; ++j)
 		{
+			if (m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1) < 0 ||
+				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1) > WINCX ||
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1) < 0 ||
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1) > WINCY)
+				continue;
 			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
 			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
 			D3DXMatrixTranslation(&matTrans,
@@ -86,42 +91,6 @@ void CTopViewBack::Render()
 					NULL,  // 출력할 이미지 포지션(출력 위치)
 					D3DCOLOR_ARGB(255, 255, 255, 255));;
 			}
-			else
-			{
-				/*vList[0] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[1] = { m_vecTile[i][j]->vPos.x + (TILECX >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
-				vList[2] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y + (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[3] = { m_vecTile[i][j]->vPos.x - (TILECX >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
-				vList[4] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };*/
-
-				vList[0] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[1] = { m_vecTile[i][j]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[2] = { m_vecTile[i][j]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[3] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[4] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
-
-				m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 0));
-			}
-
-			D3DXMatrixTranslation(&matTrans,
-				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - m_pValueMgr->iTileW / 2,
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - m_pValueMgr->iTileH / 2,
-				0.f);
-			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
-
-			wsprintf(szIdx, L"(%d,%d)", i, j);
-			m_pGraphicDev->GetFont()->DrawTextW(m_pGraphicDev->GetSprite(), szIdx,
-				lstrlen(szIdx), NULL, NULL, D3DCOLOR_ARGB(255, 255, 255, 255));
 		}
 	}
 	m_pGraphicDev->GetLine()->End();
@@ -172,4 +141,125 @@ void CTopViewBack::Render()
 
 void CTopViewBack::Release()
 {
+}
+
+void CTopViewBack::LineRender()
+{
+	D3DXMATRIX	matTrans;
+	TCHAR			szIdx[MIN_STR] = L"";
+	const TEXINFO*		pTexTexture;
+	D3DXVECTOR2 vList[5] = {};
+
+	//float	fX, fY = 0;
+	m_pGraphicDev->GetLine()->Begin();
+	for (int i = 0; i < m_pValueMgr->iColum; ++i)
+	{
+		for (int j = 0; j < m_pValueMgr->iRow; ++j)
+		{
+			if (m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1) < 0 ||
+				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1) > WINCX ||
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1) < 0 ||
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1) > WINCY)
+				continue;
+			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
+			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
+			D3DXMatrixTranslation(&matTrans,
+				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1),
+				0.f);
+			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+
+			if (TILE_COUNT > m_vecTile[i][j]->byDrawID)
+			{
+				pTexTexture = CTextureMgr::GetInstance()->GetTexture(L"TILE", L"Tile", m_vecTile[i][j]->byDrawID);
+
+				m_pGraphicDev->GetSprite()->Draw(
+					pTexTexture->pTexture,
+					NULL, // 보여줄 이미지 크기
+					&D3DXVECTOR3(TILEIMG_SIZE >> 1, TILEIMG_SIZE >> 1, 0.f), // 출력할 이미지의 센터 지점	
+					NULL,  // 출력할 이미지 포지션(출력 위치)
+					D3DCOLOR_ARGB(255, 255, 255, 255));;
+			}
+			else
+			{
+				/*vList[0] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[1] = { m_vecTile[i][j]->vPos.x + (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
+				vList[2] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y + (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[3] = { m_vecTile[i][j]->vPos.x - (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
+				vList[4] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
+				m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };*/
+
+				vList[0] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[1] = { m_vecTile[i][j]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[2] = { m_vecTile[i][j]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[3] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[4] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+
+				m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 0));
+			}
+
+			D3DXMatrixTranslation(&matTrans,
+				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - m_pValueMgr->iTileW / 2,
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - m_pValueMgr->iTileH / 2,
+				0.f);
+			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+
+			wsprintf(szIdx, L"(%d,%d)", i, j);
+			m_pGraphicDev->GetFont()->DrawTextW(m_pGraphicDev->GetSprite(), szIdx,
+				lstrlen(szIdx), NULL, NULL, D3DCOLOR_ARGB(255, 255, 255, 255));
+		}
+	}
+	m_pGraphicDev->GetLine()->End();
+
+	m_pGraphicDev->GetSprite()->End();
+
+	m_pGraphicDev->GetDevice()->EndScene();
+
+	m_pGraphicDev->GetDevice()->BeginScene();
+
+	m_pGraphicDev->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND);
+
+
+
+
+	if (m_ptCurrIdx.x != -1)
+	{
+		m_pGraphicDev->GetLine()->SetWidth(5.f);
+		m_pGraphicDev->GetLine()->Begin();
+
+		/*vList[0] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
+		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
+		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
+		m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };*/
+
+		vList[0] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+
+		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
+		m_pGraphicDev->GetLine()->End();
+		m_pGraphicDev->GetLine()->SetWidth(1.f);
+	}
 }

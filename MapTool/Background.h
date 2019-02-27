@@ -18,9 +18,9 @@ protected:
 public:
 	void TileChange(const D3DXVECTOR3& _vPos, const BYTE& _byDrawID = 1);
 	void HighLightIndex(const D3DXVECTOR3& _vPos);
+	virtual void LineRender() PURE;
 
 protected:
-
 	vector<vector<TILE*>>& m_vecTile;
 
 	CGraphicDev*			m_pGraphicDev = nullptr;

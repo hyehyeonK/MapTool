@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CDebugDialog 대화 상자입니다.
@@ -24,4 +25,8 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	void Update();
+
+public: // control
+	CButton m_LineCheck;
+	afx_msg void OnLineCheckBox();
 };
