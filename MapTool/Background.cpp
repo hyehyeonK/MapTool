@@ -70,6 +70,10 @@ void CBackground::TIleChange()
 		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->byDrawID = m_byDrawID;
 		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->vSize = g_MGR_VALUE->m_TileScale;
 	}
+	else if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_RBUTTON) & 0x8000))
+	{
+		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->byDrawID = TILE_COUNT;
+	}
 }
 
 void CBackground::AddObject(const D3DXVECTOR3& _vPos)

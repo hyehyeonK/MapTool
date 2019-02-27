@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CMapToolView, CScrollView)
 	ON_WM_TIMER()
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_RBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CMapToolView 생성/소멸
@@ -247,11 +248,32 @@ void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 			g_MGR_VALUE->GetBackGround()->TIleChange();
 		break;
 	case CValueMgr::TOOL_OBJ:
-		g_MGR_VALUE->GetBackGround()->AddObject(vMouse);
+			g_MGR_VALUE->GetBackGround()->AddObject(vMouse);
 		break;
 	case CValueMgr::TOOL_COLLI:
 		break;
 	}
 
 	CScrollView::OnLButtonDown(nFlags, point);
+}
+
+
+void CMapToolView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	D3DXVECTOR3 vMouse = { float(point.x) + GetScrollPos(0), float(point.y) + GetScrollPos(1), 0.f };
+
+	switch (g_MGR_VALUE->currTool)
+	{
+	case CValueMgr::TOOL_TILE:
+		g_MGR_VALUE->GetBackGround()->TIleChange();
+		break;
+	case CValueMgr::TOOL_OBJ:
+		break;
+	case CValueMgr::TOOL_COLLI:
+		break;
+	}
+
+	CScrollView::OnRButtonDown(nFlags, point);
 }
