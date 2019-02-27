@@ -4,7 +4,9 @@
 #include "stdafx.h"
 #include "MapTool.h"
 #include "ControlForm.h"
-
+#include "TabTile.h"
+#include "TabCollider.h"
+#include "TabObject.h"
 
 // CControlForm
 
@@ -35,11 +37,17 @@ void CControlForm::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_ROW, m_iRow);
 	DDX_Text(pDX, IDC_EDIT_TILECX, m_iTileW);
 	DDX_Text(pDX, IDC_EDIT_TILECY, m_iTileH);
+	DDX_Control(pDX, IDC_TAB1, m_Tab);
 }
 
 BEGIN_MESSAGE_MAP(CControlForm, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CControlForm::OnClickShowDebug)
 	ON_BN_CLICKED(IDC_APLYSET, &CControlForm::OnClickApplySetting)
+	ON_BN_CLICKED(IDC_NEXT, &CControlForm::OnClickNext)
+//	ON_WM_HSCROLL()
+ON_WM_SIZE()
+ON_BN_CLICKED(IDC_NEXT2, &CControlForm::OnClickBack)
+ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CControlForm::OnSelectTab)
 END_MESSAGE_MAP()
 
 
@@ -108,4 +116,95 @@ void CControlForm::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	m_pRadioView[0].SetCheck(TRUE);
+
+
+	//Tab Insert
+	m_Tab.InsertItem(0, _T("Tile"));
+	m_Tab.InsertItem(1, _T("Object"));
+	m_Tab.InsertItem(2, _T("Collider"));
+
+	CRect rect;
+	m_Tab.GetWindowRect(&rect);
+
+	m_pTabTIle = new CTabTile;
+	m_pTabTIle->Create(IDD_TAB_TILE, &m_Tab);
+	m_pTabTIle->MoveWindow(0, 25, rect.Width(), rect.Height());
+	m_pTabTIle->ShowWindow(SW_SHOW);
+
+	m_pTabObject = new CTabObject;
+	m_pTabObject->Create(IDD_TAB_OBJ, &m_Tab);
+	m_pTabObject->MoveWindow(0, 25, rect.Width(), rect.Height());
+	m_pTabObject->ShowWindow(SW_HIDE);
+
+	m_pCollider = new CTabCollider;
+	m_pCollider->Create(IDD_TAB_COLLI, &m_Tab);
+	m_pCollider->MoveWindow(0, 25, rect.Width(), rect.Height());
+	m_pCollider->ShowWindow(SW_HIDE);
+
+
+	//Scroll Bar 없애기
+	SetScrollSizes(MM_TEXT, CSize(0,0));
+}
+
+
+void CControlForm::OnClickNext()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	ScrollToPosition({300,0});
+	Invalidate(FALSE);
+}
+
+
+
+void CControlForm::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	CSize sizeTotal(WINCX, WINCY);
+	CSize sizePage(cx - 50, cy - 50);
+	CSize sizeLine(50, 50);
+	SetScrollSizes(MM_TEXT, sizeTotal, sizePage, sizeLine);
+}
+
+
+void CControlForm::OnClickBack()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	ScrollToPosition({ 0,0 });
+	Invalidate(FALSE);
+}
+
+
+void CControlForm::OnSelectTab(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	int sel = m_Tab.GetCurSel();
+
+	switch (sel)
+	{
+	case 0:
+		m_pTabTIle->ShowWindow(SW_SHOW);
+		m_pTabObject->ShowWindow(SW_HIDE);
+		m_pCollider->ShowWindow(SW_HIDE);
+		g_MGR_VALUE->currTool = CValueMgr::TOOL_TILE;
+		break;
+
+	case 1:
+		m_pTabTIle->ShowWindow(SW_HIDE);
+		m_pTabObject->ShowWindow(SW_SHOW);
+		m_pCollider->ShowWindow(SW_HIDE);
+		g_MGR_VALUE->currTool = CValueMgr::TOOL_OBJ;
+		break;
+
+	case 2:
+		m_pTabTIle->ShowWindow(SW_HIDE);
+		m_pTabObject->ShowWindow(SW_HIDE);
+		m_pCollider->ShowWindow(SW_SHOW);
+		g_MGR_VALUE->currTool = CValueMgr::TOOL_COLLI;
+		break;
+	}
+	Invalidate(FALSE);
+	*pResult = 0;
 }
