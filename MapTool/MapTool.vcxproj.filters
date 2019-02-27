@@ -159,7 +159,9 @@
     </ClInclude>
     <ClInclude Include="FileInfo.h" />
     <ClInclude Include="ObjMgr.h" />
-    <ClInclude Include="Charactor.h" />
+    <ClInclude Include="Charactor.h">
+      <Filter>02. Obj\1. Charactor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -230,7 +232,9 @@
     </ClCompile>
     <ClCompile Include="FileInfo.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
-    <ClCompile Include="Charactor.cpp" />
+    <ClCompile Include="Charactor.cpp">
+      <Filter>02. Obj\1. Charactor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapTool.rc">
