@@ -52,7 +52,7 @@ int CQuarterViewBack::Progress()
 
 void CQuarterViewBack::Render()
 {
-	D3DXMATRIX	matTrans;
+	D3DXMATRIX	matWorld, matTrans, matScale;
 	TCHAR			szIdx[MIN_STR] = L"";
 	const TEXINFO*		pTexTexture;
 	D3DXVECTOR2 vList[5] = {};
@@ -63,10 +63,10 @@ void CQuarterViewBack::Render()
 	{
 		for (int j = 0; j < m_pValueMgr->iRow; ++j)
 		{
-			if (m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1) < 0 ||
-				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1) > WINCX ||
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1) < 0 ||
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1) > WINCY)
+			if ((m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1)) * g_MGR_VALUE->m_WorldScale.x < 0 ||
+				(m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1)) * g_MGR_VALUE->m_WorldScale.x > WINCX ||
+				(m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1)) * g_MGR_VALUE->m_WorldScale.y < 0 ||
+				(m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1)) * g_MGR_VALUE->m_WorldScale.y > WINCY)
 				continue;
 			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
 			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
@@ -74,7 +74,9 @@ void CQuarterViewBack::Render()
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
 				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1),
 				0.f);
-			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+			D3DXMatrixScaling(&matScale, m_vecTile[i][j]->vSize.x, m_vecTile[i][j]->vSize.y, 0.f);
+			matWorld = matScale * matTrans * g_MGR_VALUE->m_WorldMat;
+			m_pGraphicDev->GetSprite()->SetTransform(&matWorld);
 
 			if (TILE_COUNT > m_vecTile[i][j]->byDrawID)
 			{
@@ -125,6 +127,14 @@ void CQuarterViewBack::Render()
 		vList[4] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - m_pMainView->GetScrollPos(0),
 			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
+		for (int i = 0; i < 5; ++i)
+		{
+			D3DXVECTOR3 vTemp = { vList[i].x, vList[i].y, 0.f };
+			D3DXVec3TransformCoord(&vTemp, &vTemp, &g_MGR_VALUE->m_WorldMat);
+			vList[i].x = vTemp.x;
+			vList[i].y = vTemp.y;
+		}
+
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
 		m_pGraphicDev->GetLine()->End();
 		m_pGraphicDev->GetLine()->SetWidth(1.f);
@@ -134,7 +144,7 @@ void CQuarterViewBack::Render()
 
 void CQuarterViewBack::LineRender()
 {
-	D3DXMATRIX	matTrans;
+	D3DXMATRIX	matWorld, matTrans, matScale;
 	TCHAR			szIdx[MIN_STR] = L"";
 	const TEXINFO*		pTexTexture;
 	D3DXVECTOR2 vList[5] = {};
@@ -145,10 +155,10 @@ void CQuarterViewBack::LineRender()
 	{
 		for (int j = 0; j < m_pValueMgr->iRow; ++j)
 		{
-			if (m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1) < 0 ||
-				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1) > WINCX ||
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1) < 0 ||
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1) > WINCY)
+			if ((m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) + (g_MGR_VALUE->iTileW >> 1)) * g_MGR_VALUE->m_WorldScale.x < 0 ||
+				(m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - (g_MGR_VALUE->iTileW >> 1)) * g_MGR_VALUE->m_WorldScale.x > WINCX ||
+				(m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) + (g_MGR_VALUE->iTileH >> 1)) * g_MGR_VALUE->m_WorldScale.y < 0 ||
+				(m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - (g_MGR_VALUE->iTileH >> 1)) * g_MGR_VALUE->m_WorldScale.y > WINCY)
 				continue;
 			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
 			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
@@ -156,7 +166,9 @@ void CQuarterViewBack::LineRender()
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
 				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1),
 				0.f);
-			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+			D3DXMatrixScaling(&matScale, m_vecTile[i][j]->vSize.x, m_vecTile[i][j]->vSize.y, 0.f);
+			matWorld = matScale * matTrans * g_MGR_VALUE->m_WorldMat;
+			m_pGraphicDev->GetSprite()->SetTransform(&matWorld);
 
 			if (TILE_COUNT > m_vecTile[i][j]->byDrawID)
 			{
@@ -183,6 +195,14 @@ void CQuarterViewBack::LineRender()
 				vList[4] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
 					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
+				for (int i = 0; i < 5; ++i)
+				{
+					D3DXVECTOR3 vTemp = { vList[i].x, vList[i].y, 0.f };
+					D3DXVec3TransformCoord(&vTemp, &vTemp, &g_MGR_VALUE->m_WorldMat);
+					vList[i].x = vTemp.x;
+					vList[i].y = vTemp.y;
+				}
+
 				m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 0));
 			}
 
@@ -190,6 +210,7 @@ void CQuarterViewBack::LineRender()
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - m_pValueMgr->iTileW / 4,
 				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - m_pValueMgr->iTileH / 4,
 				0.f);
+			matTrans *= g_MGR_VALUE->m_WorldMat;
 			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
 
 			wsprintf(szIdx, L"(%d,%d)", i, j);
@@ -227,6 +248,14 @@ void CQuarterViewBack::LineRender()
 		vList[4] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - m_pMainView->GetScrollPos(0),
 			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
+		for (int i = 0; i < 5; ++i)
+		{
+			D3DXVECTOR3 vTemp = { vList[i].x, vList[i].y, 0.f };
+			D3DXVec3TransformCoord(&vTemp, &vTemp, &g_MGR_VALUE->m_WorldMat);
+			vList[i].x = vTemp.x;
+			vList[i].y = vTemp.y;
+		}
+
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
 		m_pGraphicDev->GetLine()->End();
 		m_pGraphicDev->GetLine()->SetWidth(1.f);
@@ -248,7 +277,7 @@ POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 
 	for (; m_iTargetIdxX >= 0; --m_iTargetIdxX)
 	{
-		if (((_vPos.x - (m_vecTile[0][m_iTargetIdxX]->vPos.x - (g_MGR_VALUE->iTileW >> 1))) * -fGradient) + (m_pValueMgr->iRow % 2 ) * 0.5 <= _vPos.y - m_vecTile[0][m_iTargetIdxX]->vPos.y)
+		if (((_vPos.x - (m_vecTile[0][m_iTargetIdxX]->vPos.x * g_MGR_VALUE->m_WorldScale.x - (g_MGR_VALUE->iTileW * g_MGR_VALUE->m_WorldScale.x / 2.f)))* -fGradient) + (m_pValueMgr->iRow % 2 ) * 0.5 <= _vPos.y - m_vecTile[0][m_iTargetIdxX]->vPos.y * g_MGR_VALUE->m_WorldScale.y)
 			break;
 	}
 
@@ -257,7 +286,7 @@ POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 
 	for (; m_iTargetIdxY >= 0; --m_iTargetIdxY)
 	{
-		if (((_vPos.x - (m_vecTile[m_iTargetIdxY][0]->vPos.x + (g_MGR_VALUE->iTileW >> 1))) * fGradient) + (m_pValueMgr->iColum % 2) * 0.5 <= _vPos.y - m_vecTile[m_iTargetIdxY][0]->vPos.y)
+		if (((_vPos.x - (m_vecTile[m_iTargetIdxY][0]->vPos.x * g_MGR_VALUE->m_WorldScale.x + (g_MGR_VALUE->iTileW * g_MGR_VALUE->m_WorldScale.x / 2.f))) * fGradient) + (m_pValueMgr->iColum % 2) * 0.5 <= _vPos.y - m_vecTile[m_iTargetIdxY][0]->vPos.y * g_MGR_VALUE->m_WorldScale.y)
 			break;
 	}
 

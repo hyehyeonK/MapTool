@@ -205,7 +205,7 @@ void CMapToolView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	g_MGR_VALUE->m_Mouse = point;
-	D3DXVECTOR3	vMouse = D3DXVECTOR3(float(point.x) + GetScrollPos(0), float(point.y) + GetScrollPos(1), 0.f);
+	D3DXVECTOR3	vMouse = D3DXVECTOR3(float(point.x) + GetScrollPos(0) * g_MGR_VALUE->m_WorldScale.x, float(point.y) + GetScrollPos(1) * g_MGR_VALUE->m_WorldScale.y, 0.f);
 
 
 	switch (g_MGR_VALUE->currTool)

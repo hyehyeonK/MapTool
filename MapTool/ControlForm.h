@@ -67,6 +67,9 @@ public:
 	afx_msg void OnClickBack();
 
 	afx_msg void OnSelectTab(NMHDR *pNMHDR, LRESULT *pResult);
+	float m_WorldScaleX;
+	float m_WorldScaleY;
+	afx_msg void OnScaleApply();
 };
 
 

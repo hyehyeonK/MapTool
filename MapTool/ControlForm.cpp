@@ -19,6 +19,8 @@ CControlForm::CControlForm()
 	, m_iRow(g_MGR_VALUE->iRow)
 	, m_iTileW(g_MGR_VALUE->iTileW)
 	, m_iTileH(g_MGR_VALUE->iTileH)
+	, m_WorldScaleX(1.f)
+	, m_WorldScaleY(1.f)
 {
 
 }
@@ -39,6 +41,8 @@ void CControlForm::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT_TILECX, m_iTileW);
 	DDX_Text(pDX, IDC_EDIT_TILECY, m_iTileH);
 	DDX_Control(pDX, IDC_TAB1, m_Tab);
+	DDX_Text(pDX, IDC_EDIT1, m_WorldScaleX);
+	DDX_Text(pDX, IDC_EDIT2, m_WorldScaleY);
 }
 
 BEGIN_MESSAGE_MAP(CControlForm, CFormView)
@@ -49,6 +53,7 @@ BEGIN_MESSAGE_MAP(CControlForm, CFormView)
 ON_WM_SIZE()
 ON_BN_CLICKED(IDC_NEXT2, &CControlForm::OnClickBack)
 ON_NOTIFY(TCN_SELCHANGE, IDC_TAB1, &CControlForm::OnSelectTab)
+ON_BN_CLICKED(IDC_BUTTON2, &CControlForm::OnScaleApply)
 END_MESSAGE_MAP()
 
 
@@ -235,4 +240,16 @@ void CControlForm::OnSelectTab(NMHDR *pNMHDR, LRESULT *pResult)
 	}
 	Invalidate(FALSE);
 	*pResult = 0;
+}
+
+
+void CControlForm::OnScaleApply()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+
+	g_MGR_VALUE->m_WorldScale.x = m_WorldScaleX;
+	g_MGR_VALUE->m_WorldScale.y = m_WorldScaleY;
+
+	UpdateData(FALSE);
 }

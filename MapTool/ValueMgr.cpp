@@ -22,7 +22,8 @@ void CValueMgr::Initialize()
 	m_pBackground[QUARTER]->Initialize();
 	m_pBackground[TOPVIEW]->Initialize();
 	D3DXMatrixIdentity(&m_WorldMat);
-	m_Scale = D3DXVECTOR3(1.f, 1.f, 0.f);
+	m_WorldScale = D3DXVECTOR3(1.f, 1.f, 0.f);
+	m_TileScale = D3DXVECTOR3(1.f, 1.f, 0.f);
 
 	m_Mouse = CPoint(0, 0);
 	m_bLineDraw = true;
@@ -30,14 +31,14 @@ void CValueMgr::Initialize()
 
 void CValueMgr::Progress()
 {
+	D3DXMatrixScaling(&m_ScaleMat, m_WorldScale.x, m_WorldScale.y, m_WorldScale.z);
+	m_WorldMat = m_ScaleMat;
 	if (pMainView) pMainView->Invalidate(FALSE);
 	if (pDebugView) pDebugView->Update();
 }
 
 void CValueMgr::Release()
 {
-	D3DXMatrixScaling(&m_ScaleMat, m_Scale.x, m_Scale.y, m_Scale.z);
-	m_WorldMat = m_ScaleMat;
 	Safe_Delete(m_pBackground[QUARTER]);
 	Safe_Delete(m_pBackground[TOPVIEW]);
 }

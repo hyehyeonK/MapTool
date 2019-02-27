@@ -48,7 +48,8 @@ public:	//Value
 	int					iTileW = TILECX;
 	int					iTileH = TILECY;
 
-	D3DXVECTOR3         m_Scale;
+	D3DXVECTOR3         m_TileScale;
+	D3DXVECTOR3         m_WorldScale;
 	D3DXMATRIX			m_WorldMat;
 
 private:
