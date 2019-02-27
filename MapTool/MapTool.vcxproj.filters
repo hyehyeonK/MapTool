@@ -53,6 +53,9 @@
     <Filter Include="04. Dialog">
       <UniqueIdentifier>{b540dc33-8bb3-43b1-a34e-0fbbb15ef1a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Util\4. GlobalMgr">
+      <UniqueIdentifier>{d688ea1b-b5a5-4c25-a924-a2c2d701e3b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -106,6 +109,9 @@
     <ClInclude Include="DebugDialog.h">
       <Filter>04. Dialog</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalMgr.h">
+      <Filter>01. Util\4. GlobalMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -152,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="DebugDialog.cpp">
       <Filter>04. Dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalMgr.cpp">
+      <Filter>01. Util\4. GlobalMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,6 @@
 
 #include "GraphicDev.h"
 #include "TextureMgr.h"
-#include "Background.h"
 class CMapToolDoc;
 
 class CMapToolView : public CScrollView
@@ -34,7 +33,6 @@ protected:
 private:
 	CGraphicDev*		m_pGraphicDev = nullptr;
 	CTextureMgr*		m_pTextureMgr = nullptr;
-	CBackground*	m_pBackground = nullptr;
 
 // 구현입니다.
 public:
@@ -52,6 +50,7 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnDestroy();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // MapToolView.cpp의 디버그 버전
