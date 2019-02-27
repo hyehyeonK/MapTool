@@ -33,3 +33,7 @@ POINT CColliderBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 {
 	return POINT();
 }
+
+void CColliderBack::LineRender()
+{
+}

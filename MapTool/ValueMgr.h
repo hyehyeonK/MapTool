@@ -27,6 +27,8 @@ public:	//View
 	CBackground*	m_pBackground[2];
 	CPoint			m_Mouse;
 
+	bool			m_bLineDraw;
+
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;
 	TOOLTYPE		currTool = TOOL_TILE;
@@ -45,6 +47,7 @@ public:
 	void Initialize();
 	void Progress();
 	void Release();
+	void BackGroundRender();
 	CBackground* GetBackGround();
 };
 
