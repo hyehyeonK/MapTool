@@ -77,6 +77,12 @@
     <Filter Include="02. Obj\0.Background\ColliderView">
       <UniqueIdentifier>{b99a7f0b-9ded-4ea8-a293-0473c9fe90f6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Util\5. ObjMgr">
+      <UniqueIdentifier>{3d43bbb1-a05d-4b8c-9fed-a51aa9524e74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Obj\1. Charactor">
+      <UniqueIdentifier>{34f994b5-59a1-40be-b80a-90a840829062}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -151,6 +157,9 @@
     <ClInclude Include="ColliderBack.h">
       <Filter>02. Obj\0.Background\ColliderView</Filter>
     </ClInclude>
+    <ClInclude Include="FileInfo.h" />
+    <ClInclude Include="ObjMgr.h" />
+    <ClInclude Include="Charactor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -219,6 +228,9 @@
     <ClCompile Include="ColliderBack.cpp">
       <Filter>02. Obj\0.Background\ColliderView</Filter>
     </ClCompile>
+    <ClCompile Include="FileInfo.cpp" />
+    <ClCompile Include="ObjMgr.cpp" />
+    <ClCompile Include="Charactor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapTool.rc">

@@ -19,8 +19,8 @@ HRESULT CQuarterViewBack::Initialize()
 	float fX = 0;
 	float fY = 0;
 	//Tile vec
-	HalfMaxWidth = float(((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileW >> 1)>>1);
-	HalfMaxHeight = float(((m_pValueMgr->iColum + m_pValueMgr->iRow - 1) * m_pValueMgr->iTileH >> 1)>>1);
+	m_fMaxWidth = float((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileW >> 1);
+	m_fMaxHeight = (m_pValueMgr->iColum + m_pValueMgr->iRow) * (m_pValueMgr->iTileH / 2.f);
 
 	m_vecTile.resize(m_pValueMgr->iColum);
 	for (int iY = 0; iY < m_pValueMgr->iColum; ++iY)
@@ -63,7 +63,7 @@ void CQuarterViewBack::Render()
 	{
 		for (int j = 0; j < m_pValueMgr->iRow; ++j)
 		{
-			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
+			//fX = m_fMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
 			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
 			D3DXMatrixTranslation(&matTrans,
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
@@ -78,7 +78,7 @@ void CQuarterViewBack::Render()
 				m_pGraphicDev->GetSprite()->Draw(
 					pTexTexture->pTexture,
 					NULL, // 보여줄 이미지 크기
-					&D3DXVECTOR3(TILEIMG_SIZE >> 1, TILEIMG_SIZE >> 1, 0.f), // 출력할 이미지의 센터 지점	
+					&D3DXVECTOR3(pTexTexture->tImgInfo.Width >> 1, pTexTexture->tImgInfo.Height >> 1, 0.f), // 출력할 이미지의 센터 지점	
 					NULL,  // 출력할 이미지 포지션(출력 위치)
 					D3DCOLOR_ARGB(255, 255, 255, 255));;
 			}
@@ -160,7 +160,7 @@ POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 
 	for (; m_iTargetIdxX >= 0; --m_iTargetIdxX)
 	{
-		if (((_vPos.x - (m_vecTile[0][m_iTargetIdxX]->vPos.x - (g_MGR_VALUE->iTileW >> 1))) * -fGradient) <= _vPos.y - m_vecTile[0][m_iTargetIdxX]->vPos.y)
+		if (((_vPos.x - (m_vecTile[0][m_iTargetIdxX]->vPos.x - (g_MGR_VALUE->iTileW >> 1))) * -fGradient) + (m_pValueMgr->iRow % 2 ) * 0.5 <= _vPos.y - m_vecTile[0][m_iTargetIdxX]->vPos.y)
 			break;
 	}
 
@@ -169,7 +169,7 @@ POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 
 	for (; m_iTargetIdxY >= 0; --m_iTargetIdxY)
 	{
-		if (((_vPos.x - (m_vecTile[m_iTargetIdxY][0]->vPos.x + (g_MGR_VALUE->iTileW >> 1))) * fGradient) <= _vPos.y - m_vecTile[m_iTargetIdxY][0]->vPos.y)
+		if (((_vPos.x - (m_vecTile[m_iTargetIdxY][0]->vPos.x + (g_MGR_VALUE->iTileW >> 1))) * fGradient) + (m_pValueMgr->iColum % 2) * 0.5 <= _vPos.y - m_vecTile[m_iTargetIdxY][0]->vPos.y)
 			break;
 	}
 

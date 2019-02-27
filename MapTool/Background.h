@@ -30,7 +30,7 @@ protected:
 	POINT m_ptCurrIdx = { -1,-1 };
 
 public:
-	float HalfMaxWidth = 0.f;
-	float HalfMaxHeight = 0.f;
+	float m_fMaxWidth = 0.f;
+	float m_fMaxHeight = 0.f;
 };
 

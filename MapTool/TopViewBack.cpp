@@ -19,8 +19,8 @@ HRESULT CTopViewBack::Initialize()
 	float fX = 0;
 	float fY = 0;
 	//Tile vec
-	//HalfMaxWidth = m_pValueMgr->iRow * m_pValueMgr->iTileW >> 1;
-	//HalfMaxHeight = m_pValueMgr->iColum * m_pValueMgr->iTileH >> 1;
+	//m_fMaxWidth = m_pValueMgr->iRow * m_pValueMgr->iTileW >> 1;
+	//m_fMaxHeight = m_pValueMgr->iColum * m_pValueMgr->iTileH >> 1;
 
 	m_vecTile.resize(m_pValueMgr->iColum);
 	for (int iY = 0; iY < m_pValueMgr->iColum; ++iY)
@@ -28,7 +28,7 @@ HRESULT CTopViewBack::Initialize()
 		m_vecTile[iY].resize(m_pValueMgr->iRow);
 		for (int iX = 0; iX < m_pValueMgr->iRow; ++iX)
 		{
-			//fX = HalfMaxWidth + (TILECX >> 1) * float(iX - iY);
+			//fX = m_fMaxWidth + (TILECX >> 1) * float(iX - iY);
 			//fY = (TILECY >> 1) * float(iX + iY + 1);
 
 			fX = iX * (m_pValueMgr->iTileW) + (m_pValueMgr->iTileW / 2.f);
@@ -67,7 +67,7 @@ void CTopViewBack::Render()
 	{
 		for (int j = 0; j < m_pValueMgr->iRow; ++j)
 		{
-			//fX = HalfMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
+			//fX = m_fMaxWidth + ((signed int(pTexTexture->tImgInfo.Width) >> 1) * (j - i));
 			//fY = (pTexTexture->tImgInfo.Height >> 1) * (j + i + 1);
 			D3DXMatrixTranslation(&matTrans,
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
