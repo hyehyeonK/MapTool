@@ -35,6 +35,7 @@ public:	//View
 
 	CBackground*	m_pBackground[2];
 	CPoint			m_Mouse;
+	CPoint			m_SelectTileIdx = { -1,-1 };
 
 	bool			m_bLineDraw;
 	bool			m_bObjPosFromTile = true;

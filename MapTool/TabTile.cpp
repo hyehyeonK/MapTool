@@ -5,7 +5,7 @@
 #include "MapTool.h"
 #include "TabTile.h"
 #include "afxdialogex.h"
-
+#include "TileMgr.h"
 
 // CTabTile 대화 상자입니다.
 
@@ -204,6 +204,7 @@ void CTabTile::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	UpdateData(TRUE);
+	D3DXVECTOR3 scale;
 	if (pScrollBar)
 	{
 		// 어떤 슬라이더인지 검사
@@ -211,7 +212,9 @@ void CTabTile::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 		{
 			// 슬라이더의 위치를 검사한다.
 			int nPos = m_SliderScale.GetPos();
-			m_ScaleX = float(nPos / 10);
+			m_ScaleX = float(nPos / 10.f);
+			scale = { m_ScaleX ,m_ScaleX ,0.f };
+			g_MGR_TILE->GetTiles()[g_MGR_VALUE->m_SelectTileIdx.y][g_MGR_VALUE->m_SelectTileIdx.x]->vSize = scale;
 		}
 	}
 	UpdateData(FALSE);

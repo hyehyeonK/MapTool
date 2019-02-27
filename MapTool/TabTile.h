@@ -45,8 +45,6 @@ public:
 	afx_msg void OnTileList();
 	afx_msg void OnScaleX();
 	afx_msg void OnScaleY();
-
-
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 
 };

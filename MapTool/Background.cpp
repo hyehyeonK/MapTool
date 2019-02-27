@@ -72,27 +72,41 @@ void CBackground::TIleChange()
 	}
 }
 
+void CBackground::SelectTile()
+{
+	if (m_ptCurrIdx.x != -1)
+	{
+		g_MGR_VALUE->m_SelectTileIdx = m_ptCurrIdx;
+	}
+}
+
+void CBackground::SelectObj(const D3DXVECTOR3& _vPos)
+{
+	/*if (m_ptCurrIdx.x != -1)
+	{
+		g_MGR_VALUE->m_SelectTileIdx = m_ptCurrIdx;
+	}*/
+}
+
 void CBackground::AddObject(const D3DXVECTOR3& _vPos)
 {
-	if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+	if (m_byDrawID == 119)
+		return;
+
+	INFO* pNewObj = new INFO;
+
+	if (g_MGR_VALUE->m_bObjPosFromTile)
 	{
-		if (m_byDrawID == 119)
-			return;
-
-		INFO* pNewObj = new INFO;
-
-		if (g_MGR_VALUE->m_bObjPosFromTile)
-		{
-			pNewObj->vPos = g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos;
-			pNewObj->byDrawID = m_byDrawID;
-			g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
-		}
-		else
-		{
-			pNewObj->vPos = _vPos;
-			pNewObj->byDrawID = m_byDrawID;
-			g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
-		}
-		
+		pNewObj->vPos = g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos;
+		pNewObj->byDrawID = m_byDrawID;
+		g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
 	}
+	else
+	{
+		pNewObj->vPos = _vPos;
+		pNewObj->byDrawID = m_byDrawID;
+		g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
+	}
+
+	g_MGR_VALUE->m_SelectTileIdx = { -1,-1 };
 }

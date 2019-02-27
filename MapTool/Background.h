@@ -38,6 +38,8 @@ public:
 
 public:
 	void TIleChange();
+	void SelectTile();
+	void SelectObj(const D3DXVECTOR3& _vPos);
 	void AddObject(const D3DXVECTOR3& _vPos);
 };
 

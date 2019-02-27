@@ -139,6 +139,36 @@ void CQuarterViewBack::Render()
 		m_pGraphicDev->GetLine()->End();
 		m_pGraphicDev->GetLine()->SetWidth(1.f);
 	}
+
+	CPoint SelectPt = g_MGR_VALUE->m_SelectTileIdx;
+	if (SelectPt.x != -1)
+	{
+		m_pGraphicDev->GetLine()->SetWidth(5.f);
+		m_pGraphicDev->GetLine()->Begin();
+
+		vList[0] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+
+		for (int i = 0; i < 5; ++i)
+		{
+			D3DXVECTOR3 vTemp = { vList[i].x, vList[i].y, 0.f };
+			D3DXVec3TransformCoord(&vTemp, &vTemp, &g_MGR_VALUE->m_WorldMat);
+			vList[i].x = vTemp.x;
+			vList[i].y = vTemp.y;
+		}
+
+		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 255));
+		m_pGraphicDev->GetLine()->End();
+		m_pGraphicDev->GetLine()->SetWidth(1.f);
+	}
 }
 
 
@@ -257,6 +287,37 @@ void CQuarterViewBack::LineRender()
 		}
 
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
+		m_pGraphicDev->GetLine()->End();
+		m_pGraphicDev->GetLine()->SetWidth(1.f);
+
+	}
+
+	CPoint SelectPt = g_MGR_VALUE->m_SelectTileIdx;
+	if (SelectPt.x != -1)
+	{
+		m_pGraphicDev->GetLine()->SetWidth(5.f);
+		m_pGraphicDev->GetLine()->Begin();
+
+		vList[0] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[SelectPt.y][SelectPt.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[SelectPt.y][SelectPt.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+
+		for (int i = 0; i < 5; ++i)
+		{
+			D3DXVECTOR3 vTemp = { vList[i].x, vList[i].y, 0.f };
+			D3DXVec3TransformCoord(&vTemp, &vTemp, &g_MGR_VALUE->m_WorldMat);
+			vList[i].x = vTemp.x;
+			vList[i].y = vTemp.y;
+		}
+
+		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 255));
 		m_pGraphicDev->GetLine()->End();
 		m_pGraphicDev->GetLine()->SetWidth(1.f);
 	}
