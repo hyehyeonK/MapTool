@@ -124,6 +124,9 @@
     <ClInclude Include="QuarterViewBack.h">
       <Filter>02. Obj\0.Background\QuarterView</Filter>
     </ClInclude>
+    <ClInclude Include="TabTile.h" />
+    <ClInclude Include="TabObject.h" />
+    <ClInclude Include="TabCollider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -180,6 +183,9 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>00. MainFrm</Filter>
     </ClCompile>
+    <ClCompile Include="TabTile.cpp" />
+    <ClCompile Include="TabObject.cpp" />
+    <ClCompile Include="TabCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapTool.rc">

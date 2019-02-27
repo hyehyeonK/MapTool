@@ -8,6 +8,9 @@
 #define IDR_MapToolTYPE                 130
 #define IDD_CONTROLFORM                 310
 #define IDD_DEBUGDIALOG                 311
+#define IDD_TAB_TILE                    312
+#define IDD_TAB_OBJ                     314
+#define IDD_TAB_COLLI                   315
 #define IDC_BUTTON1                     1000
 #define IDC_RADIO_TV                    1001
 #define IDC_RADIO_QV                    1002
@@ -25,7 +28,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_RESOURCE_VALUE        318
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1012
 #define _APS_NEXT_SYMED_VALUE           312

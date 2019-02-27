@@ -12,7 +12,7 @@ class CValueMgr
 
 public:
 	enum VIEWPOINT{TOPVIEW, QUARTER};
-
+	enum TOOLTYPE { TOOL_TILE, TOOL_OBJ,TOOL_COLLI };
 private:
 	CValueMgr();
 	~CValueMgr();
@@ -26,6 +26,7 @@ public:	//View
 
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;
+	TOOLTYPE		currTool = TOOL_TILE;
 	int					iColum = 0;
 	int					iRow = 0;
 	int					iTileW = TILECX;

@@ -1,9 +1,14 @@
 #pragma once
 #include "DebugDialog.h"
 #include "afxwin.h"
+#include "afxcmn.h"
 
 
 // CControlForm Æû ºäÀÔ´Ï´Ù.
+
+class CTabTile;
+class CTabCollider;
+class CTabObject;
 
 class CControlForm : public CFormView
 {
@@ -40,9 +45,13 @@ public:
 	int m_iTileH;
 
 public:
+	CTabTile*	m_pTabTIle;
+	CTabObject*	m_pTabObject;
+	CTabCollider*	m_pCollider;
+public:
 	CButton m_pRadioView[2];
 	CDebugDialog m_DebugDialog;
-
+	CTabCtrl m_Tab;
 public:
 
 
@@ -56,6 +65,8 @@ public:
 
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnClickBack();
+
+	afx_msg void OnSelectTab(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 
