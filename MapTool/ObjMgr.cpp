@@ -48,6 +48,8 @@ void CObjMgr::Render(void)
 			obj.second->vPos.x - g_MGR_VALUE->pMainView->GetScrollPos(0),
 			obj.second->vPos.y - g_MGR_VALUE->pMainView->GetScrollPos(1),
 			0.f);
+
+		matTrans *= g_MGR_VALUE->m_WorldMat;
 		g_MGR_GRAPHIC->GetSprite()->SetTransform(&matTrans);
 
 		pTexTexture = CTextureMgr::GetInstance()->GetTexture(L"OBJECT", L"Object", obj.second->byDrawID);

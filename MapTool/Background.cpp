@@ -74,7 +74,7 @@ void CBackground::TIleChange()
 
 void CBackground::AddObject(const D3DXVECTOR3& _vPos)
 {
-	if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+	if ((GetAsyncKeyState(VK_LBUTTON) & 0x8000))
 	{
 		if (m_byDrawID == 119)
 			return;
@@ -89,7 +89,8 @@ void CBackground::AddObject(const D3DXVECTOR3& _vPos)
 		}
 		else
 		{
-			pNewObj->vPos = _vPos;
+
+			pNewObj->vPos = D3DXVECTOR3(((_vPos.x - g_MGR_VALUE->pMainView->GetScrollPos(0)) + g_MGR_VALUE->pMainView->GetScrollPos(0) * g_MGR_VALUE->m_WorldScale.x) / g_MGR_VALUE->m_WorldScale.x, ((_vPos.y - g_MGR_VALUE->pMainView->GetScrollPos(1)) + g_MGR_VALUE->pMainView->GetScrollPos(1) * g_MGR_VALUE->m_WorldScale.y) / g_MGR_VALUE->m_WorldScale.y, 0.f);
 			pNewObj->byDrawID = m_byDrawID;
 			g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
 		}
