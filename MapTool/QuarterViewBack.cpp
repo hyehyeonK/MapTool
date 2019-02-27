@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "QuarterViewBack.h"
-
+#include "TileMgr.h"
 
 CQuarterViewBack::CQuarterViewBack()
 {
@@ -14,6 +14,7 @@ CQuarterViewBack::~CQuarterViewBack()
 
 HRESULT CQuarterViewBack::Initialize()
 {
+	g_MGR_TILE->Release();
 	TILE*		pTile = nullptr;
 	float fX = 0;
 	float fY = 0;

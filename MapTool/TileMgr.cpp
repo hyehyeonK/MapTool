@@ -34,5 +34,4 @@ void CTileMgr::Release()
 	}
 
 	m_vecTile.clear();
-
 }

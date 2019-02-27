@@ -6,6 +6,7 @@
 #include "MapTool.h"
 
 #include "MainFrm.h"
+#include "TileMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +41,7 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
+	g_MGR_TILE->DestroyInstance();
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)

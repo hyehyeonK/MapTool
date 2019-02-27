@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TopViewBack.h"
-
+#include "TileMgr.h"
 
 CTopViewBack::CTopViewBack()
 {
@@ -14,6 +14,7 @@ CTopViewBack::~CTopViewBack()
 
 HRESULT CTopViewBack::Initialize()
 {
+	g_MGR_TILE->Release();
 	TILE*		pTile = nullptr;
 	float fX = 0;
 	float fY = 0;
