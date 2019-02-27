@@ -1,6 +1,7 @@
 #pragma once
 #include "afxwin.h"
 #include "FileInfo.h"
+#include "afxcmn.h"
 
 
 // CTabTile 대화 상자입니다.
@@ -22,6 +23,8 @@ private:
 
 public: // value
 	map<CString, CImage*>		m_mapPngImage;
+	float m_ScaleX;
+	float m_ScaleY;
 
 
 protected:
@@ -31,15 +34,19 @@ protected:
 public:
 	CListBox m_ListBox;
 	CStatic m_Picture;
+	CSliderCtrl m_SliderScale;
+	CEdit m_EditScale;
 
 public:
-	float m_ScaleX;
-	float m_ScaleY;
+	virtual BOOL OnInitDialog();
 
 public:
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnTileList();
 	afx_msg void OnScaleX();
 	afx_msg void OnScaleY();
-	virtual BOOL OnInitDialog();
+
+
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+
 };

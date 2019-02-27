@@ -212,8 +212,6 @@ void CMapToolView::OnMouseMove(UINT nFlags, CPoint point)
 		break;
 	}
 
-
-
 	CScrollView::OnMouseMove(nFlags, point);
 }
 
@@ -228,7 +226,7 @@ void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 			g_MGR_VALUE->GetBackGround()->TIleChange();
 		break;
 	case CValueMgr::TOOL_OBJ:
-		g_MGR_VALUE->GetBackGround()->AddObject();
+		g_MGR_VALUE->GetBackGround()->AddObject(); 
 		break;
 	case CValueMgr::TOOL_COLLI:
 		break;
