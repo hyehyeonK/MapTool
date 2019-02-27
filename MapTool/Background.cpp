@@ -7,7 +7,8 @@ CBackground::CBackground()
 	:m_pGraphicDev(g_MGR_GRAPHIC),
 	m_pMainView(g_MGR_VALUE->pMainView),
 	m_vecTile(g_MGR_TILE->GetTiles()),
-	m_pValueMgr(g_MGR_VALUE)
+	m_pValueMgr(g_MGR_VALUE),
+	m_byDrawID(TILE_COUNT)
 {
 	//Test
 }
@@ -52,5 +53,13 @@ void CBackground::HighLightIndex(const D3DXVECTOR3 & _vPos)
 	else
 	{
 		m_ptCurrIdx = vIdx;
+	}
+}
+
+void CBackground::Picking()
+{
+	if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+	{
+		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->byDrawID = m_byDrawID;
 	}
 }

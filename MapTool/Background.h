@@ -20,6 +20,9 @@ public:
 	void HighLightIndex(const D3DXVECTOR3& _vPos);
 	virtual void LineRender() PURE;
 
+public:
+	BYTE m_byDrawID;
+
 protected:
 	vector<vector<TILE*>>& m_vecTile;
 
@@ -32,5 +35,8 @@ protected:
 public:
 	float m_fMaxWidth = 0.f;
 	float m_fMaxHeight = 0.f;
+
+public:
+	void Picking();
 };
 

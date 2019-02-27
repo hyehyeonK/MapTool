@@ -267,17 +267,11 @@ void CTopViewBack::LineRender()
 
 POINT CTopViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
 {
-
-
-
-	float fSlop = float(TILECY) / TILECX;
+	/*float fSlop = float(TILECY) / TILECX;
 	float fY = 0;
-	float fX = 0;
-	int		iColum = 0;
-	int		iRow = 0;
-
-
-	
+	float fX = 0;*/
+	int	iColum = 0;
+	int	iRow = 0;
 
 	iRow = _vPos.x / g_MGR_VALUE->iTileW;
 	iColum = _vPos.y / g_MGR_VALUE->iTileH;

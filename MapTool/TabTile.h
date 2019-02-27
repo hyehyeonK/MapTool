@@ -1,4 +1,6 @@
 #pragma once
+#include "afxwin.h"
+#include "FileInfo.h"
 
 
 // CTabTile 대화 상자입니다.
@@ -15,9 +17,20 @@ public:
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_TAB_TILE };
 #endif
+private:
+	void HorizontalScroll();
+
+public: // value
+	map<CString, CImage*>		m_mapPngImage;
+
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CListBox m_ListBox;
+	CStatic m_Picture;
+	afx_msg void OnDropFiles(HDROP hDropInfo);
+	afx_msg void OnTileList();
 };
