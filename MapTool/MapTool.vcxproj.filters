@@ -53,8 +53,14 @@
     <Filter Include="04. Dialog">
       <UniqueIdentifier>{b540dc33-8bb3-43b1-a34e-0fbbb15ef1a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Util\4. GlobalMgr">
-      <UniqueIdentifier>{d688ea1b-b5a5-4c25-a924-a2c2d701e3b5}</UniqueIdentifier>
+    <Filter Include="02. Obj\0.Background\TopView">
+      <UniqueIdentifier>{f9874ab7-3438-4b18-90cf-5fde088fdbd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Obj\0.Background\QuarterView">
+      <UniqueIdentifier>{03b142e7-328d-4580-b2f4-be1c7cb0ad63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Util\4. ValuMgr">
+      <UniqueIdentifier>{d649b356-8370-49a2-bc78-84ace5298f5c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,8 +115,14 @@
     <ClInclude Include="DebugDialog.h">
       <Filter>04. Dialog</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalMgr.h">
-      <Filter>01. Util\4. GlobalMgr</Filter>
+    <ClInclude Include="ValueMgr.h">
+      <Filter>01. Util\4. ValuMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="TopViewBack.h">
+      <Filter>02. Obj\0.Background\TopView</Filter>
+    </ClInclude>
+    <ClInclude Include="QuarterViewBack.h">
+      <Filter>02. Obj\0.Background\QuarterView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -159,8 +171,14 @@
     <ClCompile Include="DebugDialog.cpp">
       <Filter>04. Dialog</Filter>
     </ClCompile>
-    <ClCompile Include="GlobalMgr.cpp">
-      <Filter>01. Util\4. GlobalMgr</Filter>
+    <ClCompile Include="ValueMgr.cpp">
+      <Filter>01. Util\4. ValuMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TopViewBack.cpp">
+      <Filter>02. Obj\0.Background\TopView</Filter>
+    </ClCompile>
+    <ClCompile Include="QuarterViewBack.cpp">
+      <Filter>02. Obj\0.Background\QuarterView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -193,6 +193,9 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="ControlForm.h" />
+    <ClInclude Include="QuarterViewBack.h" />
+    <ClInclude Include="TopViewBack.h" />
+    <ClInclude Include="ValueMgr.h" />
     <ClInclude Include="DebugDialog.h" />
     <ClInclude Include="GlobalMgr.h" />
     <ClInclude Include="GraphicDev.h" />
@@ -213,6 +216,9 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="ControlForm.cpp" />
+    <ClCompile Include="QuarterViewBack.cpp" />
+    <ClCompile Include="TopViewBack.cpp" />
+    <ClCompile Include="ValueMgr.cpp" />
     <ClCompile Include="DebugDialog.cpp" />
     <ClCompile Include="GlobalMgr.cpp" />
     <ClCompile Include="GraphicDev.cpp" />

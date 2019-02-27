@@ -6,6 +6,7 @@
 #include "MapTool.h"
 
 #include "MainFrm.h"
+#include "TileMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,12 +37,11 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	// TODO: 여기에 멤버 초기화 코드를 추가합니다.
-	CGlobalMgr::GetInstance()->Initialize();
 }
 
 CMainFrame::~CMainFrame()
 {
-	CGlobalMgr::GetInstance()->DestroyInstance();
+	g_MGR_TILE->DestroyInstance();
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -88,8 +88,8 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 	m_MainSplitter.CreateView(0, 1, RUNTIME_CLASS(CMapToolView), CSize(WINCX, WINCY), pContext);
 	m_MainSplitter.CreateView(0, 0, RUNTIME_CLASS(CControlForm), CSize(300, WINCY), pContext);
 
-	m_pMainView = (CMapToolView*)m_MainSplitter.GetPane(0, 1);
-	m_pCtrlView = (CControlForm*)m_MainSplitter.GetPane(0, 0);
+	g_MGR_VALUE->pMainView = (CMapToolView*)m_MainSplitter.GetPane(0, 1);
+	g_MGR_VALUE->pCtrlView = (CControlForm*)m_MainSplitter.GetPane(0, 0);
 
 	m_MainSplitter.SetColumnInfo(0, 300, 10);
 	m_MainSplitter.SetRowInfo(0, 600, 10);
