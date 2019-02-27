@@ -34,4 +34,5 @@ public:
 	afx_msg void OnSaveObjFile();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	afx_msg void OnListBox();
+	afx_msg void OnIndexBoxCheck();
 };

@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CTabObject, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1_S, &CTabObject::OnSaveObjFile)
 	ON_WM_DROPFILES()
 	ON_LBN_SELCHANGE(IDC_LIST1_S, &CTabObject::OnListBox)
+	ON_BN_CLICKED(IDC_CHECK1, &CTabObject::OnIndexBoxCheck)
 END_MESSAGE_MAP()
 
 
@@ -139,4 +140,12 @@ void CTabObject::OnListBox()
 
 
 	UpdateData(FALSE);
+}
+
+
+void CTabObject::OnIndexBoxCheck()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+
 }
