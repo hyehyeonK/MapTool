@@ -16,6 +16,7 @@
 #define IDC_RADIO_QV                    1002
 #define IDC_EDIT_COL                    1003
 #define IDC_EDIT_ROW                    1004
+#define IDC_BUTTON2_S                   1004
 #define IDC_APLYSET                     1005
 #define IDC_BTN_RESET                   1006
 #define IDC_EDIT_TILECX                 1007
@@ -23,6 +24,14 @@
 #define IDC_NEXT                        1009
 #define IDC_NEXT2                       1010
 #define IDC_TAB1                        1011
+#define IDC_LIST1                       1015
+#define IDC_LIST1_S                     1015
+#define IDC_PICTURE_S                   1016
+#define IDC_RADIO1_S                    1017
+#define IDC_RADIO2_S                    1018
+#define IDC_RADIO3_S                    1019
+#define IDC_RADIO4_S                    1020
+#define IDC_BUTTON1_S                   1021
 
 // Next default values for new objects
 // 
@@ -30,7 +39,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        318
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1012
+#define _APS_NEXT_CONTROL_VALUE         1022
 #define _APS_NEXT_SYMED_VALUE           312
 #endif
 #endif

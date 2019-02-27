@@ -145,6 +145,9 @@
     <ClInclude Include="TabTile.h">
       <Filter>05. ToolTab\0. TabTile</Filter>
     </ClInclude>
+    <ClInclude Include="FileInfo.h">
+      <Filter>01. Util\3. FileInfo</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -209,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="TabTile.cpp">
       <Filter>05. ToolTab\0. TabTile</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInfo.cpp">
+      <Filter>01. Util\3. FileInfo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

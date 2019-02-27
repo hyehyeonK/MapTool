@@ -193,6 +193,7 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="ControlForm.h" />
+    <ClInclude Include="FileInfo.h" />
     <ClInclude Include="QuarterViewBack.h" />
     <ClInclude Include="TabCollider.h" />
     <ClInclude Include="TabObject.h" />
@@ -218,6 +219,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="ControlForm.cpp" />
+    <ClCompile Include="FileInfo.cpp" />
     <ClCompile Include="QuarterViewBack.cpp" />
     <ClCompile Include="TabCollider.cpp" />
     <ClCompile Include="TabObject.cpp" />
