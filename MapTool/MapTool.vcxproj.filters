@@ -62,6 +62,18 @@
     <Filter Include="01. Util\4. ValuMgr">
       <UniqueIdentifier>{d649b356-8370-49a2-bc78-84ace5298f5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. ToolTab">
+      <UniqueIdentifier>{89084f0b-f20e-4d8d-b800-cde8b7b9d60e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ToolTab\0. TabTile">
+      <UniqueIdentifier>{0589c963-f64b-4765-be8a-763754da6a4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ToolTab\1.TabObject">
+      <UniqueIdentifier>{141bf4fb-5d12-4f7b-aac6-cbb76f61ce9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. ToolTab\3.TabCollider">
+      <UniqueIdentifier>{d0afa758-faf5-40f3-8060-ae9d2e1576a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -124,9 +136,15 @@
     <ClInclude Include="QuarterViewBack.h">
       <Filter>02. Obj\0.Background\QuarterView</Filter>
     </ClInclude>
-    <ClInclude Include="TabTile.h" />
-    <ClInclude Include="TabObject.h" />
-    <ClInclude Include="TabCollider.h" />
+    <ClInclude Include="TabCollider.h">
+      <Filter>05. ToolTab\3.TabCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="TabObject.h">
+      <Filter>05. ToolTab\1.TabObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TabTile.h">
+      <Filter>05. ToolTab\0. TabTile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -183,9 +201,15 @@
     <ClCompile Include="MainFrm.cpp">
       <Filter>00. MainFrm</Filter>
     </ClCompile>
-    <ClCompile Include="TabTile.cpp" />
-    <ClCompile Include="TabObject.cpp" />
-    <ClCompile Include="TabCollider.cpp" />
+    <ClCompile Include="TabCollider.cpp">
+      <Filter>05. ToolTab\3.TabCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="TabObject.cpp">
+      <Filter>05. ToolTab\1.TabObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TabTile.cpp">
+      <Filter>05. ToolTab\0. TabTile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MapTool.rc">
