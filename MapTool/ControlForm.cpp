@@ -141,7 +141,7 @@ void CControlForm::OnInitialUpdate()
 	pMainFrm->SetWindowPos(NULL,
 		0,
 		0,
-		int(WINCX + fRowFrm),
+		int(300 + fRowFrm),
 		int(WINCY + fColFrm),
 		SWP_NOZORDER);
 
