@@ -15,8 +15,6 @@ public:
 	vector<vector<TILE*>>&		GetTiles() { return m_vecTile; }
 	void	InitTiles();
 	void Release();
-public:
-	void Notify();
 
 private:
 	vector<vector<TILE*>> m_vecTile;
