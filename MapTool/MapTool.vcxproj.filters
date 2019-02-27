@@ -74,6 +74,9 @@
     <Filter Include="05. ToolTab\3.TabCollider">
       <UniqueIdentifier>{d0afa758-faf5-40f3-8060-ae9d2e1576a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Obj\0.Background\ColliderView">
+      <UniqueIdentifier>{b99a7f0b-9ded-4ea8-a293-0473c9fe90f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapToolDoc.h">
@@ -145,6 +148,9 @@
     <ClInclude Include="TabTile.h">
       <Filter>05. ToolTab\0. TabTile</Filter>
     </ClInclude>
+    <ClInclude Include="ColliderBack.h">
+      <Filter>02. Obj\0.Background\ColliderView</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MapTool.cpp">
@@ -209,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="TabTile.cpp">
       <Filter>05. ToolTab\0. TabTile</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderBack.cpp">
+      <Filter>02. Obj\0.Background\ColliderView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

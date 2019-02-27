@@ -11,7 +11,7 @@ public:
 	virtual ~CBackground();
 
 protected:
-	POINT GetTileIdx(const D3DXVECTOR3& _vPos);
+	virtual POINT GetTileIdx(const D3DXVECTOR3& _vPos) PURE;
 	bool Picking(const D3DXVECTOR3& _vPos, const int& _iIdx);
 	bool DotPicking(const D3DXVECTOR3& _vPos, const int& _iIdx);
 
