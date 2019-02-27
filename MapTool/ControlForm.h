@@ -13,6 +13,10 @@ protected:
 	CControlForm();           // 동적 만들기에 사용되는 protected 생성자입니다.
 	virtual ~CControlForm();
 
+private:
+	CSplitterWnd		m_MainSplitter;
+	CSplitterWnd		m_SecondSplitter;
+
 public:
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CONTROLFORM };
@@ -48,6 +52,10 @@ public:
 	afx_msg void OnClickApplySetting();
 
 	virtual void OnInitialUpdate();
+	afx_msg void OnClickNext();
+
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnClickBack();
 };
 
 

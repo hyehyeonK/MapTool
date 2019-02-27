@@ -37,9 +37,6 @@ private:
 	CGraphicDev*		m_pGraphicDev = nullptr;
 	CTextureMgr*		m_pTextureMgr = nullptr;
 
-public:
-	CBackground*	m_pBackground[2];
-
 // 구현입니다.
 public:
 	virtual ~CMapToolView();
@@ -56,6 +53,7 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	afx_msg void OnDestroy();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // MapToolView.cpp의 디버그 버전

@@ -42,6 +42,7 @@ CMainFrame::CMainFrame()
 CMainFrame::~CMainFrame()
 {
 	g_MGR_TILE->DestroyInstance();
+	g_MGR_VALUE->DestroyInstance();
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -90,9 +91,12 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 
 	g_MGR_VALUE->pMainView = (CMapToolView*)m_MainSplitter.GetPane(0, 1);
 	g_MGR_VALUE->pCtrlView = (CControlForm*)m_MainSplitter.GetPane(0, 0);
+	g_MGR_VALUE->Initialize();
 
 	m_MainSplitter.SetColumnInfo(0, 300, 10);
 	m_MainSplitter.SetRowInfo(0, 600, 10);
+
+	//SetWindowPos;;
 
 	return TRUE;
 }
