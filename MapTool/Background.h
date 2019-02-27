@@ -37,6 +37,7 @@ public:
 	float m_fMaxHeight = 0.f;
 
 public:
-	void Picking();
+	void TIleChange();
+	void AddObject();
 };
 

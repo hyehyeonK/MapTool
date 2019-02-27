@@ -196,8 +196,24 @@ void CMapToolView::OnMouseMove(UINT nFlags, CPoint point)
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	g_MGR_VALUE->m_Mouse = point;
 	D3DXVECTOR3	vMouse = D3DXVECTOR3(float(point.x) + GetScrollPos(0), float(point.y) + GetScrollPos(1), 0.f);
-	g_MGR_VALUE->GetBackGround()->HighLightIndex(vMouse);
-	g_MGR_VALUE->GetBackGround()->Picking();
+
+
+	switch (g_MGR_VALUE->currTool)
+	{
+	case CValueMgr::TOOL_TILE:
+		g_MGR_VALUE->GetBackGround()->HighLightIndex(vMouse);
+		g_MGR_VALUE->GetBackGround()->TIleChange();
+		break;
+	case CValueMgr::TOOL_OBJ:
+		g_MGR_VALUE->GetBackGround()->HighLightIndex(vMouse);
+		break;
+	case CValueMgr::TOOL_COLLI:
+
+		break;
+	}
+
+
+
 	CScrollView::OnMouseMove(nFlags, point);
 }
 
@@ -206,6 +222,17 @@ void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
-	g_MGR_VALUE->GetBackGround()->Picking();
+	switch (g_MGR_VALUE->currTool)
+	{
+	case CValueMgr::TOOL_TILE:
+			g_MGR_VALUE->GetBackGround()->TIleChange();
+		break;
+	case CValueMgr::TOOL_OBJ:
+		g_MGR_VALUE->GetBackGround()->AddObject();
+		break;
+	case CValueMgr::TOOL_COLLI:
+		break;
+	}
+
 	CScrollView::OnLButtonDown(nFlags, point);
 }

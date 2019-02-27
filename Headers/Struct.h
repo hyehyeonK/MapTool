@@ -17,3 +17,16 @@ typedef struct tagTile
 	BYTE			byDrawID;
 
 }TILE;
+
+
+typedef struct tagInfo
+{
+	D3DXVECTOR3		vPos;
+	D3DXVECTOR3		vSize;
+
+	BYTE			byOption;
+	BYTE			byDrawID;
+
+
+
+}INFO;

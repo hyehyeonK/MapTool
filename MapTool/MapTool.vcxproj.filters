@@ -157,8 +157,12 @@
     <ClInclude Include="ColliderBack.h">
       <Filter>02. Obj\0.Background\ColliderView</Filter>
     </ClInclude>
-    <ClInclude Include="ObjMgr.h" />
-    <ClInclude Include="Charactor.h" />
+    <ClInclude Include="ObjMgr.h">
+      <Filter>01. Util\5. ObjMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Charactor.h">
+      <Filter>02. Obj\1. Charactor</Filter>
+    </ClInclude>
     <ClInclude Include="FileInfo.h">
       <Filter>01. Util\3. FileInfo</Filter>
     </ClInclude>
@@ -230,8 +234,12 @@
     <ClCompile Include="ColliderBack.cpp">
       <Filter>02. Obj\0.Background\ColliderView</Filter>
     </ClCompile>
-    <ClCompile Include="ObjMgr.cpp" />
-    <ClCompile Include="Charactor.cpp" />
+    <ClCompile Include="ObjMgr.cpp">
+      <Filter>01. Util\5. ObjMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Charactor.cpp">
+      <Filter>02. Obj\1. Charactor</Filter>
+    </ClCompile>
     <ClCompile Include="FileInfo.cpp">
       <Filter>01. Util\3. FileInfo</Filter>
     </ClCompile>

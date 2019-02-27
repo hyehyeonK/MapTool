@@ -56,11 +56,15 @@ void CBackground::HighLightIndex(const D3DXVECTOR3 & _vPos)
 	}
 }
 
-void CBackground::Picking()
+void CBackground::TIleChange()
 {
 	if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_LBUTTON) & 0x8000))
 	{
 		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->byDrawID = m_byDrawID;
 		g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->vSize = g_MGR_VALUE->m_TileScale;
 	}
+}
+
+void CBackground::AddObject()
+{
 }
