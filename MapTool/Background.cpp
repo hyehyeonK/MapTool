@@ -2,6 +2,7 @@
 #include "Background.h"
 #include "MapToolView.h"
 #include "TileMgr.h"
+#include "ObjMgr.h"
 
 CBackground::CBackground()
 	:m_pGraphicDev(g_MGR_GRAPHIC),
@@ -66,4 +67,14 @@ void CBackground::TIleChange()
 
 void CBackground::AddObject()
 {
+	if (m_ptCurrIdx.x != -1 && (GetAsyncKeyState(VK_LBUTTON) & 0x8000))
+	{
+		if (m_byDrawID == 119)
+			return;
+
+		INFO* pNewObj = new INFO;
+		pNewObj->vPos = g_MGR_TILE->GetTiles()[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos;
+		pNewObj->byDrawID = m_byDrawID;
+		g_MGR_OBJ->GetObjects(g_MGR_VALUE->currObj).push_back(pNewObj);
+	}
 }

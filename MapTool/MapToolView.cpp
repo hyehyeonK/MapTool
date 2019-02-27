@@ -13,6 +13,8 @@
 #include "MapToolView.h"
 #include "MainFrm.h"
 
+#include "ObjMgr.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -70,6 +72,7 @@ void CMapToolView::OnDraw(CDC* /*pDC*/)
 	m_pGraphicDev->Render_Begin();
 
 	g_MGR_VALUE->BackGroundRender();
+	g_MGR_OBJ->Render();
 
 	m_pGraphicDev->Render_End();
 
@@ -162,6 +165,13 @@ void CMapToolView::OnInitialUpdate()
 		AfxMessageBox(L"타일 텍스쳐 생성 실패");
 		return;
 	}
+
+	if (FAILED(m_pTextureMgr->InsertTexture(L"../Texture/Object/Obj (%d).png", L"OBJECT", TEX_MULTI, L"Object", 24)))
+	{
+		AfxMessageBox(L"오브젝트 텍스처 생성 실패");
+		return;
+	}
+
 
 	SetTimer(1, 20, NULL);
 
