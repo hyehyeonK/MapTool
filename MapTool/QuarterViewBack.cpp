@@ -52,7 +52,7 @@ int CQuarterViewBack::Progress()
 
 void CQuarterViewBack::Render()
 {
-	D3DXMATRIX	matTrans;
+	D3DXMATRIX	matWorld, matTrans, matScale;
 	TCHAR			szIdx[MIN_STR] = L"";
 	const TEXINFO*		pTexTexture;
 	D3DXVECTOR2 vList[5] = {};
@@ -74,7 +74,9 @@ void CQuarterViewBack::Render()
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
 				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1),
 				0.f);
-			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+			D3DXMatrixScaling(&matScale, m_vecTile[i][j]->vSize.x, m_vecTile[i][j]->vSize.y, 0.f);
+			matWorld = matScale * matTrans;
+			m_pGraphicDev->GetSprite()->SetTransform(&matWorld);
 
 			if (TILE_COUNT > m_vecTile[i][j]->byDrawID)
 			{
@@ -134,7 +136,7 @@ void CQuarterViewBack::Render()
 
 void CQuarterViewBack::LineRender()
 {
-	D3DXMATRIX	matTrans;
+	D3DXMATRIX	matWorld, matTrans, matScale;
 	TCHAR			szIdx[MIN_STR] = L"";
 	const TEXINFO*		pTexTexture;
 	D3DXVECTOR2 vList[5] = {};
@@ -156,7 +158,9 @@ void CQuarterViewBack::LineRender()
 				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
 				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1),
 				0.f);
-			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
+			D3DXMatrixScaling(&matScale, m_vecTile[i][j]->vSize.x, m_vecTile[i][j]->vSize.y, 0.f);
+			matWorld = matScale * matTrans;
+			m_pGraphicDev->GetSprite()->SetTransform(&matWorld);
 
 			if (TILE_COUNT > m_vecTile[i][j]->byDrawID)
 			{
