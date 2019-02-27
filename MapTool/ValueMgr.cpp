@@ -31,14 +31,14 @@ void CValueMgr::Initialize()
 
 void CValueMgr::Progress()
 {
+	D3DXMatrixScaling(&m_ScaleMat, m_WorldScale.x, m_WorldScale.y, m_WorldScale.z);
+	m_WorldMat = m_ScaleMat;
 	if (pMainView) pMainView->Invalidate(FALSE);
 	if (pDebugView) pDebugView->Update();
 }
 
 void CValueMgr::Release()
 {
-	D3DXMatrixScaling(&m_ScaleMat, m_WorldScale.x, m_WorldScale.y, m_WorldScale.z);
-	m_WorldMat = m_ScaleMat;
 	Safe_Delete(m_pBackground[QUARTER]);
 	Safe_Delete(m_pBackground[TOPVIEW]);
 }
