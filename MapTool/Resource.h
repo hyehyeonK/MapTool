@@ -45,7 +45,6 @@
 #define IDC_RADIO4_S                    1028
 #define IDC_BUTTON1_S                   1029
 
-
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
