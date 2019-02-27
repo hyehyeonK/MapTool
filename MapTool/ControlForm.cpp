@@ -101,16 +101,15 @@ void CControlForm::OnClickApplySetting()
 	UpdateData(FALSE);
 
 	//화면갱신
-	g_MGR_VALUE->pMainView->m_pBackground[g_MGR_VALUE->eViewPoint]->Initialize();
+	g_MGR_VALUE->GetBackGround()->Initialize();
 	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize((m_iTileW * m_iRow), m_iTileH * m_iColum));
-	g_MGR_VALUE->pMainView->Invalidate(FALSE);
+	//g_MGR_VALUE->pMainView->Invalidate(FALSE);
 }
 
 
 void CControlForm::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
-
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	m_pRadioView[0].SetCheck(TRUE);
 
