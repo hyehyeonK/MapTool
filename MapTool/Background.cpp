@@ -66,4 +66,5 @@ void CBackground::TIleChange()
 
 void CBackground::AddObject()
 {
+
 }
