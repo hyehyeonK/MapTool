@@ -14,12 +14,21 @@ class CValueMgr
 public:
 	enum VIEWPOINT{TOPVIEW, QUARTER};
 	enum TOOLTYPE { TOOL_TILE, TOOL_OBJ,TOOL_COLLI };
+	enum OBJID
+	{
+		OBJ_A,
+		OBJ_B,
+		BJ_C,
+		OBJ_D,
+		OBJ_END
+	};
 private:
 	CValueMgr();
 	~CValueMgr();
 
 
 public:	//View
+
 	CMapToolView*	pMainView = nullptr;
 	CControlForm*	pCtrlView = nullptr;
 	CDebugDialog*	pDebugView = nullptr;
@@ -28,10 +37,12 @@ public:	//View
 	CPoint			m_Mouse;
 
 	bool			m_bLineDraw;
+	bool			m_bObjPosFromTile = true;
 
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;
 	TOOLTYPE		currTool = TOOL_TILE;
+	OBJID			currObj = OBJ_A;
 	int					iColum = 0;
 	int					iRow = 0;
 	int					iTileW = TILECX;
