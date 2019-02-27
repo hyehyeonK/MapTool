@@ -19,8 +19,8 @@ HRESULT CQuarterViewBack::Initialize()
 	float fX = 0;
 	float fY = 0;
 	//Tile vec
-	HalfMaxWidth = m_pValueMgr->iRow * m_pValueMgr->iTileW >> 1;
-	HalfMaxHeight = m_pValueMgr->iColum * m_pValueMgr->iTileH >> 1;
+	HalfMaxWidth = float(((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileW >> 1)>>1);
+	HalfMaxHeight = float(((m_pValueMgr->iColum + m_pValueMgr->iRow - 1) * m_pValueMgr->iTileH >> 1)>>1);
 
 	m_vecTile.resize(m_pValueMgr->iColum);
 	for (int iY = 0; iY < m_pValueMgr->iColum; ++iY)
@@ -28,18 +28,20 @@ HRESULT CQuarterViewBack::Initialize()
 		m_vecTile[iY].resize(m_pValueMgr->iRow);
 		for (int iX = 0; iX < m_pValueMgr->iRow; ++iX)
 		{
-			fX = HalfMaxWidth + (TILECX >> 1) * float(iX - iY);
-			fY = (TILECY >> 1) * float(iX + iY + 1);
+			fX = (m_pValueMgr->iColum * (m_pValueMgr->iTileW >> 1)) + (m_pValueMgr->iTileW >> 1) * float(iX - iY);
+			fY = (m_pValueMgr->iTileH >> 1) * float(iX + iY + 1);
 
 			pTile = new TILE;
 			pTile->vPos = D3DXVECTOR3(fX, fY, 0.f);
-			pTile->vSize = D3DXVECTOR3((float)TILECX, (float)TILECY, 0.f);
+			pTile->vSize = D3DXVECTOR3((float)m_pValueMgr->iTileW, (float)m_pValueMgr->iTileH, 0.f);
 			pTile->byOption = 0;
 			pTile->byDrawID = TILE_COUNT;
 
 			m_vecTile[iY][iX] = pTile;
 		}
 	}
+	m_ptCurrIdx.x = -1;
+
 	return S_OK;
 }
 
@@ -84,22 +86,22 @@ void CQuarterViewBack::Render()
 			{
 
 				vList[0] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[1] = { m_vecTile[i][j]->vPos.x + (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[1] = { m_vecTile[i][j]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
 					m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
 				vList[2] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y + (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-				vList[3] = { m_vecTile[i][j]->vPos.x - (TILECX >> 1) - m_pMainView->GetScrollPos(0),
+					m_vecTile[i][j]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+				vList[3] = { m_vecTile[i][j]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
 					m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) };
 				vList[4] = { m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0),
-					m_vecTile[i][j]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+					m_vecTile[i][j]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
 				m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(0, 255, 0));
 			}
 
 			D3DXMatrixTranslation(&matTrans,
-				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - TILECX / 4,
-				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - TILECY / 4,
+				m_vecTile[i][j]->vPos.x - m_pMainView->GetScrollPos(0) - m_pValueMgr->iTileW / 4,
+				m_vecTile[i][j]->vPos.y - m_pMainView->GetScrollPos(1) - m_pValueMgr->iTileH / 4,
 				0.f);
 			m_pGraphicDev->GetSprite()->SetTransform(&matTrans);
 
@@ -126,16 +128,16 @@ void CQuarterViewBack::Render()
 		m_pGraphicDev->GetLine()->SetWidth(5.f);
 		m_pGraphicDev->GetLine()->Begin();
 
-		vList[0] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[1] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x + (TILECX >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - m_pMainView->GetScrollPos(1) };
-		vList[2] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y + (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
-		vList[3] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - (TILECX >> 1) - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - m_pMainView->GetScrollPos(1) };
-		vList[4] = { m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.x - m_pMainView->GetScrollPos(0),
-			m_vecTile[m_ptCurrIdx.x][m_ptCurrIdx.y]->vPos.y - (TILECY >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[0] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[1] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x + (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[2] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y + (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
+		vList[3] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - (m_pValueMgr->iTileW >> 1) - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - m_pMainView->GetScrollPos(1) };
+		vList[4] = { m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.x - m_pMainView->GetScrollPos(0),
+			m_vecTile[m_ptCurrIdx.y][m_ptCurrIdx.x]->vPos.y - (m_pValueMgr->iTileH >> 1) - m_pMainView->GetScrollPos(1) };
 
 		m_pGraphicDev->GetLine()->Draw(vList, 5, D3DCOLOR_XRGB(255, 0, 0));
 		m_pGraphicDev->GetLine()->End();

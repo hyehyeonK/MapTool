@@ -27,9 +27,10 @@ protected:
 	CMapToolView*		m_pMainView = nullptr;
 	CValueMgr*			m_pValueMgr = nullptr;
 
+	POINT m_ptCurrIdx = { -1,-1 };
+
+public:
 	float HalfMaxWidth = 0.f;
 	float HalfMaxHeight = 0.f;
-
-	POINT m_ptCurrIdx = {-1,-1};
 };
 

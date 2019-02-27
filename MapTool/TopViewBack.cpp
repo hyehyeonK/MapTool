@@ -43,6 +43,9 @@ HRESULT CTopViewBack::Initialize()
 			m_vecTile[iY][iX] = pTile;
 		}
 	}
+
+	m_ptCurrIdx.x = -1;
+
 	return S_OK;
 }
 

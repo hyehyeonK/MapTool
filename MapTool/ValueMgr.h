@@ -24,7 +24,8 @@ public:	//View
 	CControlForm*	pCtrlView = nullptr;
 	CDebugDialog*	pDebugView = nullptr;
 
-	CBackground* m_pBackground[2];
+	CBackground*	m_pBackground[2];
+	CPoint			m_Mouse;
 
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;

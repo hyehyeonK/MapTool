@@ -50,22 +50,22 @@ void CDebugDialog::Update()
 {
 	TCHAR str[128];
 
-	wsprintf(str, L"Mouse LX : %d", 20);
+	wsprintf(str, L"Mouse LX : %d", g_MGR_VALUE->m_Mouse.x);
 	SetDlgItemText(IDC_MOUSELX, str);
 
-	wsprintf(str, L"Mouse LY : %d", 20);
+	wsprintf(str, L"Mouse LY : %d", g_MGR_VALUE->m_Mouse.y);
 	SetDlgItemText(IDC_MOUSELY, str);
 
-	wsprintf(str, L"Mouse WX : %d", 20);
+	wsprintf(str, L"Mouse WX : %d", g_MGR_VALUE->m_Mouse.x + g_MGR_VALUE->pMainView->GetScrollPos(0));
 	SetDlgItemText(IDC_MOUSEWX, str);
 
-	wsprintf(str, L"Mouse WY : %d", 20);
+	wsprintf(str, L"Mouse WY : %d", g_MGR_VALUE->m_Mouse.y + g_MGR_VALUE->pMainView->GetScrollPos(1));
 	SetDlgItemText(IDC_MOUSEWY, str);
 
-	wsprintf(str, L"Scroll X : %d", 20);
+	wsprintf(str, L"Scroll X : %d", g_MGR_VALUE->pMainView->GetScrollPos(0));
 	SetDlgItemText(IDC_SCROLLX, str);
 
-	wsprintf(str, L"Scroll Y : %d", 20);
+	wsprintf(str, L"Scroll Y : %d", g_MGR_VALUE->pMainView->GetScrollPos(1));
 	SetDlgItemText(IDC_SCROLLY, str);
 
 	wsprintf(str, L"Colum : %d", g_MGR_VALUE->iColum);
