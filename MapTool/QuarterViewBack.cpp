@@ -19,8 +19,8 @@ HRESULT CQuarterViewBack::Initialize()
 	float fX = 0;
 	float fY = 0;
 	//Tile vec
-	HalfMaxWidth = float(((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileW/2.f)/2.f);
-	HalfMaxHeight = float(((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileH /2.f)/2.f);
+	m_fMaxWidth = float((m_pValueMgr->iColum + m_pValueMgr->iRow) * m_pValueMgr->iTileW >> 1);
+	m_fMaxHeight = (m_pValueMgr->iColum + m_pValueMgr->iRow) * (m_pValueMgr->iTileH / 2.f);
 
 	m_vecTile.resize(m_pValueMgr->iColum);
 	for (int iY = 0; iY < m_pValueMgr->iColum; ++iY)
@@ -83,7 +83,7 @@ void CQuarterViewBack::Render()
 				m_pGraphicDev->GetSprite()->Draw(
 					pTexTexture->pTexture,
 					NULL, // 보여줄 이미지 크기
-					&D3DXVECTOR3(TILEIMG_SIZE >> 1, TILEIMG_SIZE >> 1, 0.f), // 출력할 이미지의 센터 지점	
+					&D3DXVECTOR3(pTexTexture->tImgInfo.Width >> 1, pTexTexture->tImgInfo.Height >> 1, 0.f), // 출력할 이미지의 센터 지점	
 					NULL,  // 출력할 이미지 포지션(출력 위치)
 					D3DCOLOR_ARGB(255, 255, 255, 255));;
 			}
@@ -234,4 +234,43 @@ void CQuarterViewBack::LineRender()
 		m_pGraphicDev->GetLine()->End();
 		m_pGraphicDev->GetLine()->SetWidth(1.f);
 	}
+}
+
+POINT CQuarterViewBack::GetTileIdx(const D3DXVECTOR3 & _vPos)
+{
+	float fSlop = float(TILECY) / TILECX;
+	float fY = 0;
+	float fX = 0;
+	int		m_iTargetIdxY = 0;
+	int		m_iTargetIdxX = 0;
+
+	float fGradient = g_MGR_VALUE->iTileH / float(g_MGR_VALUE->iTileW);
+
+	m_iTargetIdxY = g_MGR_VALUE->iColum - 1;
+	m_iTargetIdxX = g_MGR_VALUE->iRow - 1;
+
+	for (; m_iTargetIdxX >= 0; --m_iTargetIdxX)
+	{
+		if (((_vPos.x - (m_vecTile[0][m_iTargetIdxX]->vPos.x - (g_MGR_VALUE->iTileW >> 1))) * -fGradient) + (m_pValueMgr->iRow % 2 ) * 0.5 <= _vPos.y - m_vecTile[0][m_iTargetIdxX]->vPos.y)
+			break;
+	}
+
+	if (m_iTargetIdxX < 0)
+		return{ -1,-1 };
+
+	for (; m_iTargetIdxY >= 0; --m_iTargetIdxY)
+	{
+		if (((_vPos.x - (m_vecTile[m_iTargetIdxY][0]->vPos.x + (g_MGR_VALUE->iTileW >> 1))) * fGradient) + (m_pValueMgr->iColum % 2) * 0.5 <= _vPos.y - m_vecTile[m_iTargetIdxY][0]->vPos.y)
+			break;
+	}
+
+	if (m_iTargetIdxY < 0)
+		return{ -1,-1 };
+
+	//return{ m_iTargetIdxY,m_iTargetIdxX };
+	return{ m_iTargetIdxX, m_iTargetIdxY };
+}
+
+void CQuarterViewBack::Release()
+{
 }

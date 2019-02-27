@@ -11,7 +11,7 @@ public:
 	virtual ~CBackground();
 
 protected:
-	POINT GetTileIdx(const D3DXVECTOR3& _vPos);
+	virtual POINT GetTileIdx(const D3DXVECTOR3& _vPos) PURE;
 	bool Picking(const D3DXVECTOR3& _vPos, const int& _iIdx);
 	bool DotPicking(const D3DXVECTOR3& _vPos, const int& _iIdx);
 
@@ -30,7 +30,7 @@ protected:
 	POINT m_ptCurrIdx = { -1,-1 };
 
 public:
-	float HalfMaxWidth = 0.f;
-	float HalfMaxHeight = 0.f;
+	float m_fMaxWidth = 0.f;
+	float m_fMaxHeight = 0.f;
 };
 

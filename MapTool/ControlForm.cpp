@@ -107,7 +107,7 @@ void CControlForm::OnClickApplySetting()
 
 	//화면갱신
 	g_MGR_VALUE->GetBackGround()->Initialize();
-	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize(int(g_MGR_VALUE->GetBackGround()->HalfMaxWidth * 2.f), int(g_MGR_VALUE->GetBackGround()->HalfMaxHeight * 2.f)));
+	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize(int(g_MGR_VALUE->GetBackGround()->m_fMaxWidth), int(g_MGR_VALUE->GetBackGround()->m_fMaxHeight)));
 	//g_MGR_VALUE->pMainView->Invalidate(FALSE);
 }
 
