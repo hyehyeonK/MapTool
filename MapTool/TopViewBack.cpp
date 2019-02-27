@@ -87,7 +87,7 @@ void CTopViewBack::Render()
 				m_pGraphicDev->GetSprite()->Draw(
 					pTexTexture->pTexture,
 					NULL, // 보여줄 이미지 크기
-					&D3DXVECTOR3(TILEIMG_SIZE >> 1, TILEIMG_SIZE >> 1, 0.f), // 출력할 이미지의 센터 지점	
+					&D3DXVECTOR3(pTexTexture->tImgInfo.Width >> 1, pTexTexture->tImgInfo.Height >> 1, 0.f), // 출력할 이미지의 센터 지점	
 					NULL,  // 출력할 이미지 포지션(출력 위치)
 					D3DCOLOR_ARGB(255, 255, 255, 255));;
 			}
