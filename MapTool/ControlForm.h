@@ -30,7 +30,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	bool m_bStart = true;
 	int m_iColum;
 	int m_iRow;
 	int m_iTileW;
@@ -48,6 +47,7 @@ public:
 	afx_msg void OnClickShowDebug();
 	afx_msg void OnClickApplySetting();
 
+	virtual void OnInitialUpdate();
 };
 
 

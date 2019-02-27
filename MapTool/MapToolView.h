@@ -6,7 +6,9 @@
 
 #include "GraphicDev.h"
 #include "TextureMgr.h"
-#include "Background.h"
+#include "TopViewBack.h"
+#include "QuarterViewBack.h"
+
 class CMapToolDoc;
 
 class CMapToolView : public CScrollView
@@ -34,7 +36,9 @@ protected:
 private:
 	CGraphicDev*		m_pGraphicDev = nullptr;
 	CTextureMgr*		m_pTextureMgr = nullptr;
-	CBackground*	m_pBackground = nullptr;
+
+public:
+	CBackground*	m_pBackground[2];
 
 // 구현입니다.
 public:

@@ -3,8 +3,6 @@
 //
 
 #pragma once
-#include "MapToolView.h"
-#include "ControlForm.h"
 
 class CMainFrame : public CFrameWnd
 {
@@ -39,9 +37,7 @@ private:
 	CSplitterWnd		m_MainSplitter;
 	CSplitterWnd		m_SecondSplitter;
 
-public:
-	CMapToolView*	m_pMainView = nullptr;
-	CControlForm*	m_pCtrlView = nullptr;
+
 
 public:
 // 생성된 메시지 맵 함수
