@@ -25,12 +25,15 @@ CTabObject::~CTabObject()
 void CTabObject::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_LIST1_S, m_ListBox);
+	DDX_Control(pDX, IDC_PICTURE_S, m_Picture);
 }
 
 
 BEGIN_MESSAGE_MAP(CTabObject, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON1_S, &CTabObject::OnSaveObjFile)
 	ON_WM_DROPFILES()
+	ON_LBN_SELCHANGE(IDC_LIST1_S, &CTabObject::OnListBox)
 END_MESSAGE_MAP()
 
 
@@ -84,10 +87,56 @@ void CTabObject::OnDropFiles(HDROP hDropInfo)
 
 		wstring wstrRelativePath = FileInfo.ConvertRelativePath(szFullPath);
 
-		//strImageName = 
+		strImageName = PathFindFileName(szFullPath);
+
+		PathRemoveExtension((LPWSTR)strImageName.operator LPCWSTR());
+
+		auto iter = m_mapPngImage.find(strImageName);
+
+		if (iter == m_mapPngImage.end())
+		{
+			CImage* pPngImage = new CImage;
+			pPngImage->Load(wstrRelativePath.c_str());
+			m_mapPngImage.emplace(strImageName, pPngImage);
+			m_ListBox.AddString(strImageName);
+		}
 	}
 
 	CDialog::OnDropFiles(hDropInfo);
+
+	UpdateData(FALSE);
+}
+
+
+void CTabObject::OnListBox()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	UpdateData(TRUE);
+
+	CString strSelectName;
+
+	int iSelectIndex = m_ListBox.GetCurSel();
+	if (0 > iSelectIndex)
+		return;
+
+	m_ListBox.GetText(iSelectIndex, strSelectName);
+
+	auto iter = m_mapPngImage.find(strSelectName);
+	if (iter == m_mapPngImage.end())
+		return;
+
+	m_Picture.SetBitmap(*iter->second);
+
+	int i = 0;
+	for (i = 0; i < strSelectName.GetLength(); ++i)
+	{
+		if (isdigit(strSelectName[i]) != 0)
+			break;
+	}
+
+	strSelectName.Delete(0, i);
+	m_iDrawID = _tstoi(strSelectName);
+
 
 	UpdateData(FALSE);
 }
