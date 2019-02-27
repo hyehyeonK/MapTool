@@ -26,6 +26,7 @@ public: // control
 	CListBox m_ListBox;
 	CStatic m_Picture;
 	CButton m_pRadioObj[4];
+	CButton m_PosFromTile;
 
 public: // General
 	map<CString, CImage*> m_mapPngImage;
@@ -34,6 +35,8 @@ public: // General
 public:
 	afx_msg void OnSaveObjFile();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
+
 	afx_msg void OnListBox();
 	virtual BOOL OnInitDialog();
+	afx_msg void OnClickPosFromTile();
 };

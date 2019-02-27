@@ -215,7 +215,15 @@ void CMapToolView::OnMouseMove(UINT nFlags, CPoint point)
 		g_MGR_VALUE->GetBackGround()->TIleChange();
 		break;
 	case CValueMgr::TOOL_OBJ:
-		g_MGR_VALUE->GetBackGround()->HighLightIndex(vMouse);
+		if (g_MGR_VALUE->m_bObjPosFromTile)
+		{
+			g_MGR_VALUE->GetBackGround()->HighLightIndex(vMouse);
+		}
+		/*else
+		{
+			g_MGR_VALUE->GetBackGround()->HighLightIndex({ -1.f,-1.f,-1.f });
+		}*/
+			
 		break;
 	case CValueMgr::TOOL_COLLI:
 
@@ -231,6 +239,7 @@ void CMapToolView::OnMouseMove(UINT nFlags, CPoint point)
 void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	D3DXVECTOR3 vMouse = { float(point.x) + GetScrollPos(0), float(point.y) + GetScrollPos(1), 0.f };
 
 	switch (g_MGR_VALUE->currTool)
 	{
@@ -238,7 +247,7 @@ void CMapToolView::OnLButtonDown(UINT nFlags, CPoint point)
 			g_MGR_VALUE->GetBackGround()->TIleChange();
 		break;
 	case CValueMgr::TOOL_OBJ:
-		g_MGR_VALUE->GetBackGround()->AddObject();
+		g_MGR_VALUE->GetBackGround()->AddObject(vMouse);
 		break;
 	case CValueMgr::TOOL_COLLI:
 		break;

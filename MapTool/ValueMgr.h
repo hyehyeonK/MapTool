@@ -37,6 +37,7 @@ public:	//View
 	CPoint			m_Mouse;
 
 	bool			m_bLineDraw;
+	bool			m_bObjPosFromTile = true;
 
 public:	//Value
 	VIEWPOINT		eViewPoint = TOPVIEW;
