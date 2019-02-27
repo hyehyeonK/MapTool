@@ -212,9 +212,18 @@ CAPTION "Debug View"
 FONT 9, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     DEFPUSHBUTTON   "»Æ¿Œ",IDOK,264,179,50,14
-    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,7,147,134
-    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,7,143,147,50
-    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,157,7,156,170
+    LTEXT           "Mouse LX : 10000",IDC_MOUSELX,15,16,58,8
+    LTEXT           "Mouse LY : 10000",IDC_MOUSELY,80,16,58,8
+    LTEXT           "Colum : 10000",IDC_COLUM,14,71,47,8
+    LTEXT           "Row : 10000",IDC_ROW,80,71,42,8
+    LTEXT           "TileW : 10000",IDC_TILEW,14,90,46,8
+    LTEXT           "TileH : 10000",IDC_TILEH,80,90,43,8
+    CONTROL         " Line Draw",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,160,49,10
+    CONTROL         " MiniMap",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,176,42,10
+    LTEXT           "Mouse WX : 10000",IDC_MOUSEWX,14,34,61,8
+    LTEXT           "Mouse WY : 10000",IDC_MOUSEWY,80,34,62,8
+    LTEXT           "Scroll X : 10000",IDC_SCROLLX,14,53,50,8
+    LTEXT           "Scroll Y : 10000",IDC_SCROLLY,80,53,51,8
 END
 
 
