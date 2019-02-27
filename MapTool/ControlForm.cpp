@@ -111,7 +111,7 @@ void CControlForm::OnClickApplySetting()
 
 	//화면갱신
 	g_MGR_VALUE->GetBackGround()->Initialize();
-	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize(int(g_MGR_VALUE->GetBackGround()->m_fMaxWidth), int(g_MGR_VALUE->GetBackGround()->m_fMaxHeight)));
+	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize(int(WINCX + (g_MGR_VALUE->GetBackGround()->m_fMaxWidth - WINCX) * g_MGR_VALUE->m_WorldScale.x), int(WINCY + (g_MGR_VALUE->GetBackGround()->m_fMaxHeight - WINCY) * g_MGR_VALUE->m_WorldScale.y)));
 	//g_MGR_VALUE->pMainView->Invalidate(FALSE);
 }
 
@@ -251,4 +251,6 @@ void CControlForm::OnScaleApply()
 	g_MGR_VALUE->m_WorldScale.y = m_WorldScaleY;
 
 	UpdateData(FALSE);
+
+	g_MGR_VALUE->pMainView->SetScrollSizes(MM_TEXT, CSize(int(WINCX + (g_MGR_VALUE->GetBackGround()->m_fMaxWidth - WINCX) * g_MGR_VALUE->m_WorldScale.x), int(WINCY + (g_MGR_VALUE->GetBackGround()->m_fMaxHeight - WINCY) * g_MGR_VALUE->m_WorldScale.y)));
 }
