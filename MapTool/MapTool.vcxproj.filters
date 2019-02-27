@@ -135,9 +135,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>999. Default</Filter>
     </ClCompile>
-    <ClCompile Include="MainFrm.cpp">
-      <Filter>00. MainFrm</Filter>
-    </ClCompile>
     <ClCompile Include="MapToolView.cpp">
       <Filter>01. View\0.MainView</Filter>
     </ClCompile>
@@ -179,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="QuarterViewBack.cpp">
       <Filter>02. Obj\0.Background\QuarterView</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>00. MainFrm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

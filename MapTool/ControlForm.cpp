@@ -40,6 +40,10 @@ void CControlForm::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CControlForm, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CControlForm::OnClickShowDebug)
 	ON_BN_CLICKED(IDC_APLYSET, &CControlForm::OnClickApplySetting)
+	ON_BN_CLICKED(IDC_NEXT, &CControlForm::OnClickNext)
+//	ON_WM_HSCROLL()
+ON_WM_SIZE()
+ON_BN_CLICKED(IDC_NEXT2, &CControlForm::OnClickBack)
 END_MESSAGE_MAP()
 
 
@@ -109,4 +113,37 @@ void CControlForm::OnInitialUpdate()
 
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 	m_pRadioView[0].SetCheck(TRUE);
+
+	//Scroll Bar 없애기
+	SetScrollSizes(MM_TEXT, CSize(0,0));
+}
+
+
+void CControlForm::OnClickNext()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+
+	ScrollToPosition({300,0});
+	Invalidate(FALSE);
+}
+
+
+
+void CControlForm::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	CSize sizeTotal(WINCX, WINCY);
+	CSize sizePage(cx - 50, cy - 50);
+	CSize sizeLine(50, 50);
+	SetScrollSizes(MM_TEXT, sizeTotal, sizePage, sizeLine);
+}
+
+
+void CControlForm::OnClickBack()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	ScrollToPosition({ 0,0 });
+	Invalidate(FALSE);
 }

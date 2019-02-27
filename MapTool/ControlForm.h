@@ -48,6 +48,10 @@ public:
 	afx_msg void OnClickApplySetting();
 
 	virtual void OnInitialUpdate();
+	afx_msg void OnClickNext();
+
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnClickBack();
 };
 
 
