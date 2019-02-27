@@ -23,6 +23,8 @@ void CValueMgr::Initialize()
 	m_pBackground[TOPVIEW]->Initialize();
 	D3DXMatrixIdentity(&m_WorldMat);
 	m_Scale = D3DXVECTOR3(1.f, 1.f, 0.f);
+
+	m_Mouse = CPoint(0, 0);
 }
 
 void CValueMgr::Progress()
